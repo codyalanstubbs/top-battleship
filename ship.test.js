@@ -3,7 +3,7 @@ import { Ship } from "./ship.js";
 const newShip = Ship(5);
 
 test("ship length 5", () => {
-    expect(newShip.length).toBe(5);
+    expect(newShip.getLength()).toBe(5);
 });
 
 test("No hits on ship", () => {
