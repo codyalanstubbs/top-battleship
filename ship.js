@@ -6,6 +6,6 @@ export const Ship = (len) => {
     const getHits   = () => {return hits};
     const hit       = () => {hits += 1};
     const isSunk    = () => {return hits === length};
-    
+
     return {getLength, getHits, hit, isSunk};
 }
