@@ -1,5 +1,5 @@
 export const ship = (len) => {
     const length = len;
-
-    return {length};
+    const hits = 0;
+    return {length, hits};
 }
