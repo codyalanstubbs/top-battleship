@@ -1,13 +1,17 @@
-import { ship } from "./ship.js";
+import { Ship } from "./ship.js";
+
+const newShip = Ship(5);
 
 test("ship length 5", () => {
-    expect(ship(5).length).toBe(5);
+    expect(newShip.length).toBe(5);
 });
 
 test("No hits on ship", () => {
-    expect(ship(5).hits).toBe(0);
+    expect(newShip.getHits()).toBe(0);
 });
 
+const hitShip = Ship(5);
+hitShip.hit();
 test("Add hit to ship", () => {
-    expect(ship(5).hit()).toBe(1);
+    expect(hitShip.getHits()).toBe(1);
 });
