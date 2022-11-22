@@ -1,5 +1,7 @@
-export const ship = (len) => {
+export const Ship = (len) => {
     const length = len;
-    const hits = 0;
-    return {length, hits};
+    let hits = 0;
+    const getHits = () => {return hits};
+    const hit = () => {hits += 1};
+    return {length, getHits, hit};
 }
