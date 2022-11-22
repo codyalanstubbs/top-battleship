@@ -4,5 +4,6 @@ export const Ship = (len) => {
     let hits = 0;
     const getHits = () => {return hits};
     const hit = () => {hits += 1};
-    return {getLength, getHits, hit};
+    const isSunk = () => {return hits === length};
+    return {getLength, getHits, hit, isSunk};
 }
