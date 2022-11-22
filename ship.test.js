@@ -15,3 +15,14 @@ hitShip.hit();
 test("Add hit to ship", () => {
     expect(hitShip.getHits()).toBe(1);
 });
+
+test("Check if ship sunk after one hit", () => {
+    expect(hitShip.isSunk()).toBe(false);
+});
+hitShip.hit();
+hitShip.hit();
+hitShip.hit();
+hitShip.hit();
+test("Check if ship sunk after five hits", () => {
+    expect(hitShip.isSunk()).toBe(true);
+});
