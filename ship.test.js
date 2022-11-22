@@ -20,7 +20,6 @@ test("Check if ship sunk after one hit", () => {
     expect(hitShip.isSunk()).toBe(false);
 });
 
-
 const sunkShip = Ship(5);
 sunkShip.hit();
 sunkShip.hit();
