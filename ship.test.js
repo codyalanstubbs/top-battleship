@@ -19,10 +19,14 @@ test("Add hit to ship", () => {
 test("Check if ship sunk after one hit", () => {
     expect(hitShip.isSunk()).toBe(false);
 });
-hitShip.hit();
-hitShip.hit();
-hitShip.hit();
-hitShip.hit();
+
+
+const sunkShip = Ship(5);
+sunkShip.hit();
+sunkShip.hit();
+sunkShip.hit();
+sunkShip.hit();
+sunkShip.hit();
 test("Check if ship sunk after five hits", () => {
-    expect(hitShip.isSunk()).toBe(true);
+    expect(sunkShip.isSunk()).toBe(true);
 });
