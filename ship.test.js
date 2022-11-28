@@ -1,4 +1,4 @@
-import { Ship, Gameboard } from "./ship.js";
+import { Ship, Gameboard, Player } from "./ship.js";
 
 const newShip = Ship(5);
 
@@ -155,4 +155,18 @@ sunkGameboard.receiveAttack(0,4);
 
 test("Check check if all ships sunk on a gameboard - true", () => {
     expect(sunkGameboard.allShipsSunk()).toBe(true);
-})
+});
+
+const playerOne = Player();
+const playerTwoGB = Gameboard();
+const playerTwoShip = Ship(5);
+playerTwoGB.addShip(playerTwoShip, 0, 0, 'vertical');
+
+
+test("Check if P1's attack on P2's gameboard works - hit", () => {
+    expect(playerOne.attack(playerTwoGB, 0, 0)).toBe(1);
+});
+
+test("Check if P1's attack on P2's gameboard works - miss", () => {
+    expect(playerOne.attack(playerTwoGB, 0, 6)).toBe("miss");
+});
