@@ -18,6 +18,28 @@ test("Get end coordinates", () => {
     expect(newShip.getEndCoord()).toStrictEqual([0,4]);
 });
 
+const setShipH = Ship(5);
+setShipH.setCoord(1, 1, "horizontal");
+
+test("Set new coordinates horizontally - check start", () => {
+    expect(setShipH.getStartCoord()).toStrictEqual([1,1]);
+});
+
+test("Set new coordinates horizontally - check end", () => {
+    expect(setShipH.getEndCoord()).toStrictEqual([5,1]);
+});
+
+const setShipV = Ship(5);
+setShipV.setCoord(1, 1, "vertical");
+
+test("Set new coordinates vertically - check start", () => {
+    expect(setShipV.getStartCoord()).toStrictEqual([1,1]);
+});
+
+test("Set new coordinates vertically - check end", () => {
+    expect(setShipV.getEndCoord()).toStrictEqual([1,5]);
+});
+
 const hitShip = Ship(5);
 hitShip.hit();
 test("Add hit to ship", () => {
