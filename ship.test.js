@@ -1,4 +1,4 @@
-import { Ship } from "./ship.js";
+import { Ship, Gameboard } from "./ship.js";
 
 const newShip = Ship(5);
 
@@ -58,4 +58,22 @@ sunkShip.hit();
 sunkShip.hit();
 test("Check if ship sunk after five hits", () => {
     expect(sunkShip.isSunk()).toBe(true);
+});
+
+const p1Gameboard = Gameboard();
+const mockGameboard = [
+    ['','','','','','','','','',''],
+    ['','','','','','','','','',''],
+    ['','','','','','','','','',''],
+    ['','','','','','','','','',''],
+    ['','','','','','','','','',''],
+    ['','','','','','','','','',''],
+    ['','','','','','','','','',''],
+    ['','','','','','','','','',''],
+    ['','','','','','','','','',''],
+    ['','','','','','','','','','']
+];
+
+test("Check Gameboard.board array", () => {
+    expect(p1Gameboard.board).toStrictEqual(mockGameboard);
 });
