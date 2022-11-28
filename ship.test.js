@@ -78,7 +78,7 @@ test("Check Gameboard.board array", () => {
     expect(p1Gameboard.board).toStrictEqual(mockGameboard);
 });
 
-const gameboardWithShip = [
+const gameboardWithShipH = [
     [0,     0,      0,      0,      0,      null,   null,   null,   null,   null],
     [null,  null,   null,   null,   null,   null,   null,   null,   null,   null],
     [null,  null,   null,   null,   null,   null,   null,   null,   null,   null],
@@ -91,6 +91,27 @@ const gameboardWithShip = [
     [null,  null,   null,   null,   null,   null,   null,   null,   null,   null]
 ];
 
-test("Check Gameboard.board array", () => {
-    expect(p1Gameboard.addShip(newShip, 0, 0, 'horizontal')).toStrictEqual(gameboardWithShip);
+test("Check adding ship to board horizontally", () => {
+    expect(p1Gameboard.addShip(newShip, 0, 0, 'horizontal')).toStrictEqual(gameboardWithShipH);
+});
+
+
+const p2Gameboard = Gameboard();
+const newShipV = Ship(5);
+
+const gameboardWithShipV = [
+    [0,     null,   null,   null,   null,   null,   null,   null,   null,   null],
+    [0,     null,   null,   null,   null,   null,   null,   null,   null,   null],
+    [0,     null,   null,   null,   null,   null,   null,   null,   null,   null],
+    [0,     null,   null,   null,   null,   null,   null,   null,   null,   null],
+    [0,     null,   null,   null,   null,   null,   null,   null,   null,   null],
+    [0,     null,   null,   null,   null,   null,   null,   null,   null,   null],
+    [null,  null,   null,   null,   null,   null,   null,   null,   null,   null],
+    [null,  null,   null,   null,   null,   null,   null,   null,   null,   null],
+    [null,  null,   null,   null,   null,   null,   null,   null,   null,   null],
+    [null,  null,   null,   null,   null,   null,   null,   null,   null,   null]
+];
+
+test("Check adding ship to board vertically", () => {
+    expect(p2Gameboard.addShip(newShipV, 0, 0, 'vertical')).toStrictEqual(gameboardWithShipV);
 });
