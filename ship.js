@@ -14,6 +14,7 @@ export const Ship = (len) => {
     const setCoord  = (startX, startY, axis) => {
         startCoord[0]   = startX;
         startCoord[1]   = startY;
+        
         if (axis === 'horizontal') {
             endCoord[0]     = startX + length - 1;
             endCoord[1]     = startY;
