@@ -77,3 +77,20 @@ const mockGameboard = [
 test("Check Gameboard.board array", () => {
     expect(p1Gameboard.board).toStrictEqual(mockGameboard);
 });
+
+const gameboardWithShip = [
+    [0,     0,      0,      0,      0,      null,   null,   null,   null,   null],
+    [null,  null,   null,   null,   null,   null,   null,   null,   null,   null],
+    [null,  null,   null,   null,   null,   null,   null,   null,   null,   null],
+    [null,  null,   null,   null,   null,   null,   null,   null,   null,   null],
+    [null,  null,   null,   null,   null,   null,   null,   null,   null,   null],
+    [null,  null,   null,   null,   null,   null,   null,   null,   null,   null],
+    [null,  null,   null,   null,   null,   null,   null,   null,   null,   null],
+    [null,  null,   null,   null,   null,   null,   null,   null,   null,   null],
+    [null,  null,   null,   null,   null,   null,   null,   null,   null,   null],
+    [null,  null,   null,   null,   null,   null,   null,   null,   null,   null]
+];
+
+test("Check Gameboard.board array", () => {
+    expect(p1Gameboard.addShip(newShip, 0, 0, 'horizontal')).toStrictEqual(gameboardWithShip);
+});

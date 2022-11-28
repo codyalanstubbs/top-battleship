@@ -33,7 +33,7 @@ export const Ship = (len) => {
 }
 
 export const Gameboard = () => {
-    const board = [
+    let board = [
         [null,  null,   null,   null,   null,   null,   null,   null,   null,   null],
         [null,  null,   null,   null,   null,   null,   null,   null,   null,   null],
         [null,  null,   null,   null,   null,   null,   null,   null,   null,   null],
