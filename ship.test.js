@@ -115,3 +115,27 @@ const gameboardWithShipV = [
 test("Check adding ship to board vertically", () => {
     expect(p2Gameboard.addShip(newShipV, 0, 0, 'vertical')).toStrictEqual(gameboardWithShipV);
 });
+
+test("Receive attack on a ship spot", () => {
+    expect(p2Gameboard.receiveAttack(0,1)).toBe(1);
+})
+
+test("Check that ship does receive hit", () => {
+    expect(p2Gameboard.ships[0].getHits()).toBe(1);
+})
+
+test("Receive attack on an empty spot", () => {
+    expect(p2Gameboard.receiveAttack(0,9)).toBe("miss");
+})
+
+test("Receive attack on an empty spot that was already hit", () => {
+    expect(p2Gameboard.receiveAttack(0,9)).toBe("invalid move - already missed");
+})
+
+test("Receive attack on a ship spot that has already been hit", () => {
+    expect(p2Gameboard.receiveAttack(0,1)).toBe("invalid move - already hit");
+})
+
+test("Check that ship does not receive additional hits", () => {
+    expect(p2Gameboard.ships[0].getHits()).toBe(1);
+})
