@@ -46,5 +46,30 @@ export const Gameboard = () => {
         [null,  null,   null,   null,   null,   null,   null,   null,   null,   null]
     ];
 
-    return {board};
+    let ships = [];
+
+    const addShip = (aShip, startX, startY, axis) => {
+        aShip.setCoord(startX, startY, axis);
+
+        const shipIndex     = ships.push(aShip) - 1;
+        const shipStartX    = aShip.getStartCoord()[0];
+        const shipStartY    = aShip.getStartCoord()[1];
+        const shipEndX      = aShip.getEndCoord()[0];
+        const shipEndY      = aShip.getEndCoord()[1];
+        let i;
+
+        if (axis === 'horizontal') {
+            for (i = shipStartX; i <= shipEndX; i++) {
+                board[shipStartY][i] = shipIndex;
+            }
+        } else if (axis === 'vertical') {
+            for (i = shipStartY; i <= shipEndY+1; i++) {
+                board[i][shipStartX] = shipIndex;
+            }
+        }
+
+        return board;
+    }
+
+    return {board, addShip};
 }
