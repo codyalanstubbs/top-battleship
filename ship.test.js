@@ -162,7 +162,6 @@ const playerTwoGB = Gameboard();
 const playerTwoShip = Ship(5);
 playerTwoGB.addShip(playerTwoShip, 0, 0, 'vertical');
 
-
 test("Check if P1's attack on P2's gameboard works - hit", () => {
     expect(playerOne.attack(playerTwoGB, 0, 0)).toBe(1);
 });
