@@ -139,3 +139,20 @@ test("Receive attack on a ship spot that has already been hit", () => {
 test("Check that ship does not receive additional hits", () => {
     expect(p2Gameboard.ships[0].getHits()).toBe(1);
 })
+
+test("Check check if all ships sunk on a gameboard - false", () => {
+    expect(p2Gameboard.allShipsSunk()).toBe(false);
+})
+
+const sunkGameboard = Gameboard();
+const anotherShip = Ship(5);
+sunkGameboard.addShip(anotherShip, 0, 0, 'vertical');
+sunkGameboard.receiveAttack(0,0);
+sunkGameboard.receiveAttack(0,1);
+sunkGameboard.receiveAttack(0,2);
+sunkGameboard.receiveAttack(0,3);
+sunkGameboard.receiveAttack(0,4);
+
+test("Check check if all ships sunk on a gameboard - true", () => {
+    expect(sunkGameboard.allShipsSunk()).toBe(true);
+})
