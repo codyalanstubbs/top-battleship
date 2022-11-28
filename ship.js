@@ -98,10 +98,17 @@ export const Gameboard = () => {
 }
 
 export const Player = () => {
-    
+    let computer = false;
+
     const attack = (enemyGameboard, x, y) => {
-        return enemyGameboard.receiveAttack(x, y);
+        let xAttack = x;
+        let yAttack = y;
+        if (computer === true) {
+            xAttack = Math.floor(Math.random() * (9 - 0 + 1)) + 0;
+            yAttack = Math.floor(Math.random() * (9 - 0 + 1)) + 0;
+        }
+        return enemyGameboard.receiveAttack(xAttack, yAttack);
     };
 
-    return {attack};
+    return {computer, attack};
 }
