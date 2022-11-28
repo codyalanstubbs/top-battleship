@@ -38,7 +38,7 @@ test("Set new coordinates vertically - check start", () => {
 
 test("Set new coordinates vertically - check end", () => {
     expect(setShipV.getEndCoord()).toStrictEqual([1,5]);
-});
+});calc
 
 const hitShip = Ship(5);
 hitShip.hit();
@@ -62,16 +62,16 @@ test("Check if ship sunk after five hits", () => {
 
 const p1Gameboard = Gameboard();
 const mockGameboard = [
-    ['','','','','','','','','',''],
-    ['','','','','','','','','',''],
-    ['','','','','','','','','',''],
-    ['','','','','','','','','',''],
-    ['','','','','','','','','',''],
-    ['','','','','','','','','',''],
-    ['','','','','','','','','',''],
-    ['','','','','','','','','',''],
-    ['','','','','','','','','',''],
-    ['','','','','','','','','','']
+    [null,  null,   null,   null,   null,   null,   null,   null,   null,   null],
+    [null,  null,   null,   null,   null,   null,   null,   null,   null,   null],
+    [null,  null,   null,   null,   null,   null,   null,   null,   null,   null],
+    [null,  null,   null,   null,   null,   null,   null,   null,   null,   null],
+    [null,  null,   null,   null,   null,   null,   null,   null,   null,   null],
+    [null,  null,   null,   null,   null,   null,   null,   null,   null,   null],
+    [null,  null,   null,   null,   null,   null,   null,   null,   null,   null],
+    [null,  null,   null,   null,   null,   null,   null,   null,   null,   null],
+    [null,  null,   null,   null,   null,   null,   null,   null,   null,   null],
+    [null,  null,   null,   null,   null,   null,   null,   null,   null,   null]
 ];
 
 test("Check Gameboard.board array", () => {

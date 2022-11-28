@@ -34,16 +34,16 @@ export const Ship = (len) => {
 
 export const Gameboard = () => {
     const board = [
-        ['','','','','','','','','',''],
-        ['','','','','','','','','',''],
-        ['','','','','','','','','',''],
-        ['','','','','','','','','',''],
-        ['','','','','','','','','',''],
-        ['','','','','','','','','',''],
-        ['','','','','','','','','',''],
-        ['','','','','','','','','',''],
-        ['','','','','','','','','',''],
-        ['','','','','','','','','','']
+        [null,  null,   null,   null,   null,   null,   null,   null,   null,   null],
+        [null,  null,   null,   null,   null,   null,   null,   null,   null,   null],
+        [null,  null,   null,   null,   null,   null,   null,   null,   null,   null],
+        [null,  null,   null,   null,   null,   null,   null,   null,   null,   null],
+        [null,  null,   null,   null,   null,   null,   null,   null,   null,   null],
+        [null,  null,   null,   null,   null,   null,   null,   null,   null,   null],
+        [null,  null,   null,   null,   null,   null,   null,   null,   null,   null],
+        [null,  null,   null,   null,   null,   null,   null,   null,   null,   null],
+        [null,  null,   null,   null,   null,   null,   null,   null,   null,   null],
+        [null,  null,   null,   null,   null,   null,   null,   null,   null,   null]
     ];
 
     return {board};
