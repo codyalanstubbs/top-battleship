@@ -10,6 +10,14 @@ test("No hits on ship", () => {
     expect(newShip.getHits()).toBe(0);
 });
 
+test("Get start coordinates", () => {
+    expect(newShip.getStartCoord()).toStrictEqual([0,0]);
+});
+
+test("Get end coordinates", () => {
+    expect(newShip.getEndCoord()).toStrictEqual([0,4]);
+});
+
 const hitShip = Ship(5);
 hitShip.hit();
 test("Add hit to ship", () => {
