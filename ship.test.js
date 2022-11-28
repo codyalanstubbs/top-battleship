@@ -38,7 +38,7 @@ test("Set new coordinates vertically - check start", () => {
 
 test("Set new coordinates vertically - check end", () => {
     expect(setShipV.getEndCoord()).toStrictEqual([1,5]);
-});calc
+});
 
 const hitShip = Ship(5);
 hitShip.hit();
