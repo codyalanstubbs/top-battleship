@@ -96,3 +96,12 @@ export const Gameboard = () => {
 
     return {ships, board, addShip, receiveAttack, allShipsSunk};
 }
+
+export const Player = () => {
+    
+    const attack = (enemyGameboard, x, y) => {
+        return enemyGameboard.receiveAttack(x, y);
+    };
+
+    return {attack};
+}
