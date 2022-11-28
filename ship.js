@@ -87,5 +87,12 @@ export const Gameboard = () => {
         }
     }
 
-    return {ships, board, addShip, receiveAttack};
+    const allShipsSunk = () => {
+        for (let i = 0; i < ships.length; i++) {
+            if (!ships[i].isSunk()) {return false};
+        }
+        return true;
+    }
+
+    return {ships, board, addShip, receiveAttack, allShipsSunk};
 }
