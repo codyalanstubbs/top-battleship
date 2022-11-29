@@ -72,11 +72,16 @@ export const Gameboard = () => {
     }
 
     const receiveAttack = (x, y) => {
-        if (board[y][x] !== null && board[y][x] !== 'miss' && board[y][x] !== 'hit') {
+        if (board[y][x] === null) {
+            board[y][x] = 'miss';
+            return board[y][x];
+        } else if (board[y][x] !== null && board[y][x] !== 'miss' && board[y][x] !== 'hit') {
             const shipIndex = board[y][x];
             board[y][x] = 'hit';
             ships[shipIndex].hit();
             return ships[shipIndex].getHits();
+        } else {
+            return 'invalid';
         }
     }
 
