@@ -72,14 +72,7 @@ export const Gameboard = () => {
     }
 
     const receiveAttack = (x, y) => {
-        if (board[y][x] === 'hit') {
-            return 'invalid move - already hit';
-        } else if (board[y][x] === 'miss') {
-            return 'invalid move - already missed';
-        } else if (board[y][x] === null) {
-            board[y][x] = 'miss';
-            return board[y][x];
-        } else if (board[y][x] !== null && board[y][x] !== 'miss') {
+        if (board[y][x] !== null && board[y][x] !== 'miss' && board[y][x] !== 'hit') {
             const shipIndex = board[y][x];
             board[y][x] = 'hit';
             ships[shipIndex].hit();
