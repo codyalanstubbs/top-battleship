@@ -10,8 +10,8 @@ const playerTwoShip = Ship(5);
 playerTwoGB.addShip(playerTwoShip, 0, 0, 'vertical');
 
 describe("Validate non-computer player can attack player two with hit and miss", () => {
-    test("Should return 1 for a successful hit", () => {
-        expect(playerOne.attack(playerTwoGB, 0, 0)).toBe(1);
+    test("Should return 'hit' for a successful hit", () => {
+        expect(playerOne.attack(playerTwoGB, 0, 0)).toBe('hit');
     });
     
     test("Should return 'miss'", () => {

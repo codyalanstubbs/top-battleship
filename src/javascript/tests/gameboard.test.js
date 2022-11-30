@@ -66,7 +66,7 @@ describe("Validate successful hits", () => {
     p2Gameboard.addShip(Ship(5), 0, 0, 'vertical');
 
     test("Should add a hit to ship and return a hit value of 1", () => {
-        expect(p2Gameboard.receiveAttack(0,1)).toBe(1);
+        expect(p2Gameboard.receiveAttack(0,1)).toBe('hit');
     })
     
     test("Should return a hit value of 1", () => {
