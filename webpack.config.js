@@ -1,9 +1,13 @@
 const path = require('path');
 
 module.exports = {
-    entry: './src/index.js',
+    entry: {
+        factories: './src/javascript/factories.js',
+        startBattle: './src/javascript/startBattle.js',
+        gameSetup: './src/javascript/gameSetup.js'
+    },
     output: {
-        filename: 'main.js',
+        filename: '[name].bundle.js',
         path: path.resolve(__dirname, 'dist'),
     },
 };
