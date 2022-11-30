@@ -15,7 +15,7 @@ describe('Create gameboard', () => {
         [null,  null,   null,   null,   null,   null,   null,   null,   null,   null]
     ];
     
-    test("Check Gameboard.board array", () => {
+    test("Should return an array exactly equal to mock with no ships", () => {
         expect(p1Gameboard.board).toStrictEqual(mockGameboard);
     });
 
@@ -36,7 +36,7 @@ describe("Validate adding ships to gameboard", () => {
         [null,  null,   null,   null,   null,   null,   null,   null,   null,   null]
     ];
 
-    test("Check adding ship to board horizontally", () => {
+    test("Should return an array with a ship with index 0 on row 0 columns 0 to 4", () => {
         expect(p1Gameboard.addShip(Ship(5), 0, 0, 'horizontal')).toStrictEqual(gameboardWithShipH);
     });
 
@@ -56,7 +56,7 @@ describe("Validate adding ships to gameboard", () => {
         [null,  null,   null,   null,   null,   null,   null,   null,   null,   null]
     ];
 
-    test("Check adding ship to board vertically", () => {
+    test("Should return an array with with both a horizontal ship (index=0) and vertical ship (index=1)", () => {
         expect(p1Gameboard.addShip(Ship(5), 9, 0, 'vertical')).toStrictEqual(gameboardWithShipV);
     });
 })
@@ -65,27 +65,27 @@ describe("Validate successful hits", () => {
     const p2Gameboard = Gameboard();
     p2Gameboard.addShip(Ship(5), 0, 0, 'vertical');
 
-    test("Receive attack on a ship spot", () => {
+    test("Should add a hit to ship and return a hit value of 1", () => {
         expect(p2Gameboard.receiveAttack(0,1)).toBe(1);
     })
     
-    test("Check that ship does receive hit", () => {
+    test("Should return a hit value of 1", () => {
         expect(p2Gameboard.ships[0].getHits()).toBe(1);
     })
     
-    test("Receive attack on an empty spot", () => {
+    test("Should return string 'miss'", () => {
         expect(p2Gameboard.receiveAttack(0,9)).toBe("miss");
     })
     
-    test("Receive attack on an empty spot that was already hit", () => {
+    test("Should receive attack on an empty spot that was already hit and return 'invalid'", () => {
         expect(p2Gameboard.receiveAttack(0,9)).toBe("invalid");
     })
     
-    test("Receive attack on a ship spot that has already been hit", () => {
+    test("Should receive attack on a ship spot that has already been hit and return 'invalid'", () => {
         expect(p2Gameboard.receiveAttack(0,1)).toBe("invalid");
     })
     
-    test("Check that ship does not receive additional hits", () => {
+    test("Should check that ship does not receive additional hits and returns 1", () => {
         expect(p2Gameboard.ships[0].getHits()).toBe(1);
     })
 })
@@ -95,11 +95,11 @@ describe("Valide checking gameboard for sunk ships", () => {
     const anotherShip = Ship(5);
     p1Gameboard.addShip(anotherShip, 0, 0, 'vertical');
     
-    test("Check check if all ships sunk on a gameboard - false", () => {
+    test("Should return false since no ships have been hit yet", () => {
         expect(p1Gameboard.allShipsSunk()).toBe(false);
     });
 
-    test("Check check if all ships sunk on a gameboard - true", () => {
+    test("Should return true since the only ship has been hit 5 times", () => {
         p1Gameboard.receiveAttack(0,0);
         p1Gameboard.receiveAttack(0,1);
         p1Gameboard.receiveAttack(0,2);
