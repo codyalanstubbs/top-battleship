@@ -129,11 +129,11 @@ test(`${i++}) `+"Receive attack on an empty spot", () => {
 })
 
 test(`${i++}) `+"Receive attack on an empty spot that was already hit", () => {
-    expect(p2Gameboard.receiveAttack(0,9)).toBe("invalid move - already missed");
+    expect(p2Gameboard.receiveAttack(0,9)).toBe("invalid");
 })
 
 test(`${i++}) `+"Receive attack on a ship spot that has already been hit", () => {
-    expect(p2Gameboard.receiveAttack(0,1)).toBe("invalid move - already hit");
+    expect(p2Gameboard.receiveAttack(0,1)).toBe("invalid");
 })
 
 test(`${i++}) `+"Check that ship does not receive additional hits", () => {
