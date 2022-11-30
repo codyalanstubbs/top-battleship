@@ -1,4 +1,5 @@
 import { Gameboard, Ship } from "./factories.js";
+
 describe('Create gameboard', () => {
     const p1Gameboard = Gameboard();
     const mockGameboard = [
@@ -59,8 +60,6 @@ describe("Validate adding ships to gameboard", () => {
         expect(p1Gameboard.addShip(Ship(5), 9, 0, 'vertical')).toStrictEqual(gameboardWithShipV);
     });
 })
-
-
 
 describe("Validate successful hits", () => {
     const p2Gameboard = Gameboard();
