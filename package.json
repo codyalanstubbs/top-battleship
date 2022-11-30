@@ -2,9 +2,10 @@
   "name": "top-battleship",
   "version": "1.0.0",
   "description": "Using Test-Drive Development to build a battleship game.",
-  "main": "index.js",
+  "private": true,
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "build": "webpack"
   },
   "repository": {
     "type": "git",
@@ -19,6 +20,7 @@
   "homepage": "https://github.com/codyalanstubbs/top-battleship#readme",
   "devDependencies": {
     "@babel/preset-env": "^7.20.2",
-    "jest": "^29.3.1"
+    "jest": "^29.3.1",
+    "webpack-cli": "^5.0.0"
   }
 }
