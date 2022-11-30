@@ -1,98 +1,111 @@
 import { Gameboard, Ship } from "./factories.js";
+describe('Create gameboard', () => {
+    const p1Gameboard = Gameboard();
+    const mockGameboard = [
+        [null,  null,   null,   null,   null,   null,   null,   null,   null,   null],
+        [null,  null,   null,   null,   null,   null,   null,   null,   null,   null],
+        [null,  null,   null,   null,   null,   null,   null,   null,   null,   null],
+        [null,  null,   null,   null,   null,   null,   null,   null,   null,   null],
+        [null,  null,   null,   null,   null,   null,   null,   null,   null,   null],
+        [null,  null,   null,   null,   null,   null,   null,   null,   null,   null],
+        [null,  null,   null,   null,   null,   null,   null,   null,   null,   null],
+        [null,  null,   null,   null,   null,   null,   null,   null,   null,   null],
+        [null,  null,   null,   null,   null,   null,   null,   null,   null,   null],
+        [null,  null,   null,   null,   null,   null,   null,   null,   null,   null]
+    ];
+    
+    test("Check Gameboard.board array", () => {
+        expect(p1Gameboard.board).toStrictEqual(mockGameboard);
+    });
 
-const p1Gameboard = Gameboard();
-const mockGameboard = [
-    [null,  null,   null,   null,   null,   null,   null,   null,   null,   null],
-    [null,  null,   null,   null,   null,   null,   null,   null,   null,   null],
-    [null,  null,   null,   null,   null,   null,   null,   null,   null,   null],
-    [null,  null,   null,   null,   null,   null,   null,   null,   null,   null],
-    [null,  null,   null,   null,   null,   null,   null,   null,   null,   null],
-    [null,  null,   null,   null,   null,   null,   null,   null,   null,   null],
-    [null,  null,   null,   null,   null,   null,   null,   null,   null,   null],
-    [null,  null,   null,   null,   null,   null,   null,   null,   null,   null],
-    [null,  null,   null,   null,   null,   null,   null,   null,   null,   null],
-    [null,  null,   null,   null,   null,   null,   null,   null,   null,   null]
-];
-
-test("Check Gameboard.board array", () => {
-    expect(p1Gameboard.board).toStrictEqual(mockGameboard);
 });
 
-const gameboardWithShipH = [
-    [0,     0,      0,      0,      0,      null,   null,   null,   null,   null],
-    [null,  null,   null,   null,   null,   null,   null,   null,   null,   null],
-    [null,  null,   null,   null,   null,   null,   null,   null,   null,   null],
-    [null,  null,   null,   null,   null,   null,   null,   null,   null,   null],
-    [null,  null,   null,   null,   null,   null,   null,   null,   null,   null],
-    [null,  null,   null,   null,   null,   null,   null,   null,   null,   null],
-    [null,  null,   null,   null,   null,   null,   null,   null,   null,   null],
-    [null,  null,   null,   null,   null,   null,   null,   null,   null,   null],
-    [null,  null,   null,   null,   null,   null,   null,   null,   null,   null],
-    [null,  null,   null,   null,   null,   null,   null,   null,   null,   null]
-];
-const newShip = Ship(5);
-test("Check adding ship to board horizontally", () => {
-    expect(p1Gameboard.addShip(newShip, 0, 0, 'horizontal')).toStrictEqual(gameboardWithShipH);
-});
+describe("Validate adding ships to gameboard", () => {
+    const p1Gameboard = Gameboard();
+    const gameboardWithShipH = [
+        [0,     0,      0,      0,      0,      null,   null,   null,   null,   null],
+        [null,  null,   null,   null,   null,   null,   null,   null,   null,   null],
+        [null,  null,   null,   null,   null,   null,   null,   null,   null,   null],
+        [null,  null,   null,   null,   null,   null,   null,   null,   null,   null],
+        [null,  null,   null,   null,   null,   null,   null,   null,   null,   null],
+        [null,  null,   null,   null,   null,   null,   null,   null,   null,   null],
+        [null,  null,   null,   null,   null,   null,   null,   null,   null,   null],
+        [null,  null,   null,   null,   null,   null,   null,   null,   null,   null],
+        [null,  null,   null,   null,   null,   null,   null,   null,   null,   null],
+        [null,  null,   null,   null,   null,   null,   null,   null,   null,   null]
+    ];
 
+    test("Check adding ship to board horizontally", () => {
+        expect(p1Gameboard.addShip(Ship(5), 0, 0, 'horizontal')).toStrictEqual(gameboardWithShipH);
+    });
 
-const p2Gameboard = Gameboard();
-const newShipV = Ship(5);
+    // Since the same gameboard is being used to test the vertical addition
+    // the index of the vertical addition will be 1 instead of zero since the
+    // horizontal ship has already been added
+    const gameboardWithShipV = [
+        [0,     0,      0,      0,      0,      null,   null,   null,   null,   1],
+        [null,  null,   null,   null,   null,   null,   null,   null,   null,   1],
+        [null,  null,   null,   null,   null,   null,   null,   null,   null,   1],
+        [null,  null,   null,   null,   null,   null,   null,   null,   null,   1],
+        [null,  null,   null,   null,   null,   null,   null,   null,   null,   1],
+        [null,  null,   null,   null,   null,   null,   null,   null,   null,   null],
+        [null,  null,   null,   null,   null,   null,   null,   null,   null,   null],
+        [null,  null,   null,   null,   null,   null,   null,   null,   null,   null],
+        [null,  null,   null,   null,   null,   null,   null,   null,   null,   null],
+        [null,  null,   null,   null,   null,   null,   null,   null,   null,   null]
+    ];
 
-const gameboardWithShipV = [
-    [0,     null,   null,   null,   null,   null,   null,   null,   null,   null],
-    [0,     null,   null,   null,   null,   null,   null,   null,   null,   null],
-    [0,     null,   null,   null,   null,   null,   null,   null,   null,   null],
-    [0,     null,   null,   null,   null,   null,   null,   null,   null,   null],
-    [0,     null,   null,   null,   null,   null,   null,   null,   null,   null],
-    [0,     null,   null,   null,   null,   null,   null,   null,   null,   null],
-    [null,  null,   null,   null,   null,   null,   null,   null,   null,   null],
-    [null,  null,   null,   null,   null,   null,   null,   null,   null,   null],
-    [null,  null,   null,   null,   null,   null,   null,   null,   null,   null],
-    [null,  null,   null,   null,   null,   null,   null,   null,   null,   null]
-];
-
-test("Check adding ship to board vertically", () => {
-    expect(p2Gameboard.addShip(newShipV, 0, 0, 'vertical')).toStrictEqual(gameboardWithShipV);
-});
-
-test("Receive attack on a ship spot", () => {
-    expect(p2Gameboard.receiveAttack(0,1)).toBe(1);
+    test("Check adding ship to board vertically", () => {
+        expect(p1Gameboard.addShip(Ship(5), 9, 0, 'vertical')).toStrictEqual(gameboardWithShipV);
+    });
 })
 
-test("Check that ship does receive hit", () => {
-    expect(p2Gameboard.ships[0].getHits()).toBe(1);
+
+
+describe("Validate successful hits", () => {
+    const p2Gameboard = Gameboard();
+    p2Gameboard.addShip(Ship(5), 0, 0, 'vertical');
+
+    test("Receive attack on a ship spot", () => {
+        expect(p2Gameboard.receiveAttack(0,1)).toBe(1);
+    })
+    
+    test("Check that ship does receive hit", () => {
+        expect(p2Gameboard.ships[0].getHits()).toBe(1);
+    })
+    
+    test("Receive attack on an empty spot", () => {
+        expect(p2Gameboard.receiveAttack(0,9)).toBe("miss");
+    })
+    
+    test("Receive attack on an empty spot that was already hit", () => {
+        expect(p2Gameboard.receiveAttack(0,9)).toBe("invalid");
+    })
+    
+    test("Receive attack on a ship spot that has already been hit", () => {
+        expect(p2Gameboard.receiveAttack(0,1)).toBe("invalid");
+    })
+    
+    test("Check that ship does not receive additional hits", () => {
+        expect(p2Gameboard.ships[0].getHits()).toBe(1);
+    })
 })
 
-test("Receive attack on an empty spot", () => {
-    expect(p2Gameboard.receiveAttack(0,9)).toBe("miss");
+describe("Valide checking gameboard for sunk ships", () => {
+    const p1Gameboard = Gameboard();
+    const anotherShip = Ship(5);
+    p1Gameboard.addShip(anotherShip, 0, 0, 'vertical');
+    
+    test("Check check if all ships sunk on a gameboard - false", () => {
+        expect(p1Gameboard.allShipsSunk()).toBe(false);
+    });
+
+    test("Check check if all ships sunk on a gameboard - true", () => {
+        p1Gameboard.receiveAttack(0,0);
+        p1Gameboard.receiveAttack(0,1);
+        p1Gameboard.receiveAttack(0,2);
+        p1Gameboard.receiveAttack(0,3);
+        p1Gameboard.receiveAttack(0,4);
+        expect(p1Gameboard.allShipsSunk()).toBe(true);
+    });
 })
-
-test("Receive attack on an empty spot that was already hit", () => {
-    expect(p2Gameboard.receiveAttack(0,9)).toBe("invalid");
-})
-
-test("Receive attack on a ship spot that has already been hit", () => {
-    expect(p2Gameboard.receiveAttack(0,1)).toBe("invalid");
-})
-
-test("Check that ship does not receive additional hits", () => {
-    expect(p2Gameboard.ships[0].getHits()).toBe(1);
-})
-
-test("Check check if all ships sunk on a gameboard - false", () => {
-    expect(p2Gameboard.allShipsSunk()).toBe(false);
-})
-
-const sunkGameboard = Gameboard();
-const anotherShip = Ship(5);
-sunkGameboard.addShip(anotherShip, 0, 0, 'vertical');
-sunkGameboard.receiveAttack(0,0);
-sunkGameboard.receiveAttack(0,1);
-sunkGameboard.receiveAttack(0,2);
-sunkGameboard.receiveAttack(0,3);
-sunkGameboard.receiveAttack(0,4);
-
-test("Check check if all ships sunk on a gameboard - true", () => {
-    expect(sunkGameboard.allShipsSunk()).toBe(true);
-});
