@@ -9,18 +9,22 @@ const playerTwoGB = Gameboard();
 const playerTwoShip = Ship(5);
 playerTwoGB.addShip(playerTwoShip, 0, 0, 'vertical');
 
-test("Check if P1's attack on P2's gameboard works - hit", () => {
-    expect(playerOne.attack(playerTwoGB, 0, 0)).toBe(1);
+describe("Validate non-computer player can attack player two with hit and miss", () => {
+    test("Should return 1 for a successful hit", () => {
+        expect(playerOne.attack(playerTwoGB, 0, 0)).toBe(1);
+    });
+    
+    test("Should return 'miss'", () => {
+        expect(playerOne.attack(playerTwoGB, 0, 6)).toBe("miss");
+    });
 });
 
-test("Check if P1's attack on P2's gameboard works - miss", () => {
-    expect(playerOne.attack(playerTwoGB, 0, 6)).toBe("miss");
-});
-
-test("Check if playerTwo is a computer", () => {
-    expect(playerTwo.computer).toBe(true);
-});
-
-test("Check if P2's attack on P1's gameboard works - miss", () => {
-    expect(playerTwo.attack(playerOneGB, 0, 0)).toBe("miss");
+describe("Validate a computer player", () => {
+    test("Should confirm player 2 is a computer by returning true", () => {
+        expect(playerTwo.computer).toBe(true);
+    });
+    
+    test("Should confirm that playerTwo has attacked and missed", () => {
+        expect(playerTwo.attack(playerOneGB, 0, 0)).toBe("miss");
+    });
 });
