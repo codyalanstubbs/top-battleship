@@ -63,7 +63,7 @@ export const Gameboard = () => {
                 board[shipStartY][i] = shipIndex;
             }
         } else if (axis === 'vertical') {
-            for (i = shipStartY; i <= shipEndY+1; i++) {
+            for (i = shipStartY; i <= shipEndY; i++) {
                 board[i][shipStartX] = shipIndex;
             }
         }
