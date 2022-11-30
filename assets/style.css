@@ -4,6 +4,7 @@ body {
     align-items: center;
     gap: 20px;
     background-color: #000;
+    height: 10vh;
 }
 
 h1 {
