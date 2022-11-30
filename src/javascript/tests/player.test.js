@@ -1,4 +1,4 @@
-import { Ship, Gameboard, Player } from "../javascript/factories.js";
+import { Ship, Gameboard, Player } from "../factories.js";
 
 const playerOne = Player();
 const playerOneGB = Gameboard(); // Create empty gameboard for testing computer player

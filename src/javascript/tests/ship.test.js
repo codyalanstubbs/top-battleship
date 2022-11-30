@@ -1,4 +1,4 @@
-import { Ship } from "../javascript/factories.js";
+import { Ship } from "../factories.js";
 
 describe("Validate the Ship factory's getters", () => {
     const newShip = Ship(5);
