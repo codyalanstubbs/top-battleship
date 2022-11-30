@@ -30,3 +30,22 @@ h1 {
     color: #d70000;
     border: 1px solid #d70000;
 }
+
+.board {
+    display: flex;
+    gap: 0;
+    flex-wrap: wrap;
+    width: 200px;
+}
+
+.space {
+    width: 18px;
+    height: 18px;
+    color: white;
+    text-align: center;
+    border: 1px solid #d70000;
+}
+
+.space.enemy {
+    cursor: crosshair;
+}

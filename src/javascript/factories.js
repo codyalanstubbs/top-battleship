@@ -79,7 +79,7 @@ export const Gameboard = () => {
             const shipIndex = board[y][x];
             board[y][x] = 'hit';
             ships[shipIndex].hit();
-            return ships[shipIndex].getHits();
+            return 'hit';
         } else {
             return 'invalid';
         }

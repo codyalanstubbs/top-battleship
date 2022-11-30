@@ -3,9 +3,7 @@ const path = require('path');
 module.exports = {
     entry: {
         factories:  './src/javascript/factories.js',
-        startBattle:'./src/javascript/startBattle.js',
-        gameSetup:  './src/javascript/gameSetup.js',
-        placeAllShips:  './src/javascript/placeAllShips.js'
+        startBattle:'./src/javascript/startBattle.js'
     },
     output: {
         filename: '[name].bundle.js',
