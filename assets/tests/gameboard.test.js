@@ -1,4 +1,4 @@
-import { Gameboard, Ship } from "./factories.js";
+import { Gameboard, Ship } from "../javascript/factories.js";
 
 describe('Create gameboard', () => {
     const p1Gameboard = Gameboard();
