@@ -1,0 +1,31 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    background-color: #000;
+}
+
+h1 {
+    color: #d70000;
+    margin: 0;
+    padding: 0;
+}
+
+.warship {
+    filter: invert(11%) sepia(99%) saturate(5357%) hue-rotate(6deg) brightness(89%) contrast(119%);
+}
+
+#start {
+    background-color: #d70000;
+    color: white;
+    border: 1px solid white;
+    font-weight: 900;
+}
+
+#start:hover {
+    cursor: pointer;
+    background-color: white;
+    color: #d70000;
+    border: 1px solid #d70000;
+}
