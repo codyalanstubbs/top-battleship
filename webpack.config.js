@@ -4,7 +4,8 @@ module.exports = {
     entry: {
         factories:  './src/javascript/factories.js',
         startBattle:'./src/javascript/startBattle.js',
-        gameSetup:  './src/javascript/gameSetup.js'
+        gameSetup:  './src/javascript/gameSetup.js',
+        placeAllShips:  './src/javascript/placeAllShips.js'
     },
     output: {
         filename: '[name].bundle.js',
