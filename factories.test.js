@@ -1,4 +1,4 @@
-import { Ship, Gameboard, Player } from "./ship.js";
+import { Ship, Gameboard, Player } from "./factories.js";
 
 const newShip = Ship(5);
 let i = 1;
