@@ -66,7 +66,7 @@ describe("Validate successful hits", () => {
     p2Gameboard.addShip(Ship(5), 0, 0, 'vertical');
 
     test("Should add a hit to ship and return a hit value of 1", () => {
-        expect(p2Gameboard.receiveAttack(0,1)).toBe('hit');
+        expect(p2Gameboard.receiveAttack(0,1).result).toBe('hit');
     })
     
     test("Should return a hit value of 1", () => {
@@ -74,15 +74,15 @@ describe("Validate successful hits", () => {
     })
     
     test("Should return string 'miss'", () => {
-        expect(p2Gameboard.receiveAttack(0,9)).toBe("miss");
+        expect(p2Gameboard.receiveAttack(0,9).result).toBe("miss");
     })
     
     test("Should receive attack on an empty spot that was already hit and return 'invalid'", () => {
-        expect(p2Gameboard.receiveAttack(0,9)).toBe("invalid");
+        expect(p2Gameboard.receiveAttack(0,9).result).toBe("invalid");
     })
     
     test("Should receive attack on a ship spot that has already been hit and return 'invalid'", () => {
-        expect(p2Gameboard.receiveAttack(0,1)).toBe("invalid");
+        expect(p2Gameboard.receiveAttack(0,1).result).toBe("invalid");
     })
     
     test("Should check that ship does not receive additional hits and returns 1", () => {
