@@ -65,7 +65,9 @@ startBtn.addEventListener("click", () => {
             spaceElement.setAttribute("id", spaceIndex);
 
             spaceElement.addEventListener("click", () => {
+
                 const result = P1.attack(P2GB, spaceIndex, rowIndex);
+
                 if (result === "miss") {
                     spaceElement.textContent = "X";
                     spaceElement.classList = "space hit";
@@ -75,6 +77,7 @@ startBtn.addEventListener("click", () => {
                 } else if (result === "invalid") {
                     alert("Move Invalid");
                 }
+                
             });
 
             P2GBElement.appendChild(spaceElement);
@@ -84,8 +87,4 @@ startBtn.addEventListener("click", () => {
     body.appendChild(P1GBElement);
     body.appendChild(P2GBElement);
 
-    // Start the game loop
-    // while (!P1GB.allShipsSunk() || P2GB.allShipsSunk()) {
-        
-    // };
 });
