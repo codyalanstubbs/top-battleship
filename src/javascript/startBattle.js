@@ -29,17 +29,18 @@ startBtn.addEventListener("click", () => {
     const P1GBElement = document.createElement('div');
     P1GBElement.classList = "player1 board grey";
 
-    P1GB.board.forEach((row) => {
-        row.forEach((space) => {
+    P1GB.board.forEach((row, rowIndex) => {
+        row.forEach((space, spaceIndex) => {
 
             const spaceElement = document.createElement('div');
+
+            spaceElement.setAttribute("id", "P1-"+rowIndex+"-"+spaceIndex);
 
             if (space === null) {
                 spaceElement.textContent = "~";
                 spaceElement.classList = "space";
             } else if (space >= 0) {
                 spaceElement.textContent = space;
-                spaceElement.setAttribute("id", space);
                 spaceElement.classList = "space ship";
             } else if (space === "miss") {
                 spaceElement.textContent = "X";
@@ -65,7 +66,7 @@ startBtn.addEventListener("click", () => {
             spaceElement.setAttribute("id", spaceIndex);
 
             spaceElement.addEventListener("click", () => {
-
+                
                 const attackResult = P1.attack(P2GB, spaceIndex, rowIndex);
 
                 if (attackResult.result === "miss") {
@@ -75,6 +76,19 @@ startBtn.addEventListener("click", () => {
                     spaceElement.textContent = "O";
                     spaceElement.classList = "space hit";
                 } else if (attackResult.result === "invalid") {
+                    alert("Move Invalid");
+                }
+
+                const computerAttack = P2.attack(P1GB, 0, 0, true);
+                const P1AttackedSpace = document.querySelector(`#P1-${computerAttack.yAttack}-${computerAttack.xAttack}`);
+
+                if (computerAttack.result === "miss") {
+                    P1AttackedSpace.textContent = "X";
+                    P1AttackedSpace.classList = "space miss";
+                } else if (computerAttack.result === "hit") {
+                    P1AttackedSpace.textContent = "O";
+                    P1AttackedSpace.classList = "space hit";
+                } else if (computerAttack.result === "invalid") {
                     alert("Move Invalid");
                 }
                 
