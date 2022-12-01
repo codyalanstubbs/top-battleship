@@ -79,36 +79,48 @@ startBtn.addEventListener("click", () => {
                     alert("Move Invalid");
                 }
 
-                if (P2GB.allShipsSunk()) {
-                    // Remove start menu elements
-                    while (body.lastChild) {
-                        if (body.lastChild.tagName === 'H1') break;
-                        body.removeChild(body.lastChild);
-                    };
-                    body.lastChild.textContent = "Player 1 wins!";
-                }
+                P2GBElement.classList.toggle("grey");
+                P1GBElement.classList.toggle("grey");
 
-                const computerAttack = P2.attack(P1GB, 0, 0, true);
-                const P1AttackedSpace = document.querySelector(`#P1-${computerAttack.yAttack}-${computerAttack.xAttack}`);
+                setTimeout(() => {
 
-                if (computerAttack.result === "miss") {
-                    P1AttackedSpace.textContent = "X";
-                    P1AttackedSpace.classList = "space miss";
-                } else if (computerAttack.result === "hit") {
-                    P1AttackedSpace.textContent = "O";
-                    P1AttackedSpace.classList = "space hit";
-                } else if (computerAttack.result === "invalid") {
-                    alert("Move Invalid");
-                }
+                    setTimeout(() => {
+                        P2GBElement.classList.toggle("grey");
+                        P1GBElement.classList.toggle("grey");
+                    }, 1000);
 
-                if (P1GB.allShipsSunk()) {
-                    // Remove start menu elements
-                    while (body.lastChild) {
-                        if (body.lastChild.tagName === 'H1') break;
-                        body.removeChild(body.lastChild);
-                    };
-                    body.lastChild.textContent = "Player 1 wins!";
-                }
+                    if (P2GB.allShipsSunk()) {
+                        // Remove start menu elements
+                        while (body.lastChild) {
+                            if (body.lastChild.tagName === 'H1') break;
+                            body.removeChild(body.lastChild);
+                        };
+                        body.lastChild.textContent = "Player 1 wins!";
+                    }
+                    
+                    const computerAttack = P2.attack(P1GB, 0, 0, true);
+                    const P1AttackedSpace = document.querySelector(`#P1-${computerAttack.yAttack}-${computerAttack.xAttack}`);
+    
+                    if (computerAttack.result === "miss") {
+                        P1AttackedSpace.textContent = "X";
+                        P1AttackedSpace.classList = "space miss";
+                    } else if (computerAttack.result === "hit") {
+                        P1AttackedSpace.textContent = "O";
+                        P1AttackedSpace.classList = "space hit";
+                    } else if (computerAttack.result === "invalid") {
+                        alert("Move Invalid");
+                    }
+    
+                    if (P1GB.allShipsSunk()) {
+                        // Remove start menu elements
+                        while (body.lastChild) {
+                            if (body.lastChild.tagName === 'H1') break;
+                            body.removeChild(body.lastChild);
+                        };
+                        body.lastChild.textContent = "Player 1 wins!";
+                    }
+
+                }, 2000)
                 
             });
 
