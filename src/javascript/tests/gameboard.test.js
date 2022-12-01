@@ -65,24 +65,44 @@ describe("Validate successful hits", () => {
     const p2Gameboard = Gameboard();
     p2Gameboard.addShip(Ship(5), 0, 0, 'vertical');
 
-    test("Should add a hit to ship and return a hit value of 1", () => {
-        expect(p2Gameboard.receiveAttack(0,1).result).toBe('hit');
+    test("Should return object with attack coordinates and 'hit' result", () => {
+        const result01 = p2Gameboard.receiveAttack(0,1);
+        expect(result01.xAttack).toBe(0);
+        expect(result01.yAttack).toBe(1);
+        expect(result01.result).toBe('hit');
+        expect(result01.result).not.toBe('miss');
+        expect(result01.result).not.toBe('invalid');
     })
     
     test("Should return a hit value of 1", () => {
         expect(p2Gameboard.ships[0].getHits()).toBe(1);
     })
     
-    test("Should return string 'miss'", () => {
-        expect(p2Gameboard.receiveAttack(0,9).result).toBe("miss");
+    test("Should return object with attack coordinates and 'miss' result", () => {
+        const result09 = p2Gameboard.receiveAttack(0,9);
+        expect(result09.xAttack).toBe(0);
+        expect(result09.yAttack).toBe(9);
+        expect(result09.result).toBe('miss');
+        expect(result09.result).not.toBe('hit');
+        expect(result09.result).not.toBe('invalid');
     })
     
-    test("Should receive attack on an empty spot that was already hit and return 'invalid'", () => {
-        expect(p2Gameboard.receiveAttack(0,9).result).toBe("invalid");
+    test("Should return object with attack coordinates and 'invalid' result since missed spot was already fired at", () => {
+        const result09 = p2Gameboard.receiveAttack(0,9);
+        expect(result09.xAttack).toBe(0);
+        expect(result09.yAttack).toBe(9);
+        expect(result09.result).toBe('invalid');
+        expect(result09.result).not.toBe('hit');
+        expect(result09.result).not.toBe('miss');
     })
     
-    test("Should receive attack on a ship spot that has already been hit and return 'invalid'", () => {
-        expect(p2Gameboard.receiveAttack(0,1).result).toBe("invalid");
+    test("Should return object with attack coordinates and 'invalid' result since ship/hit spot was already fired at", () => {
+        const result09 = p2Gameboard.receiveAttack(0,1);
+        expect(result09.xAttack).toBe(0);
+        expect(result09.yAttack).toBe(1);
+        expect(result09.result).toBe('invalid');
+        expect(result09.result).not.toBe('hit');
+        expect(result09.result).not.toBe('miss');
     })
     
     test("Should check that ship does not receive additional hits and returns 1", () => {
