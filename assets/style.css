@@ -49,3 +49,11 @@ h1 {
 .space.enemy {
     cursor: crosshair;
 }
+
+.space.enemy:hover {
+    border: 1px solid #d7004b;
+}
+
+.board.grey > .space {
+    border: 1px solid #7b2a2a;
+}
