@@ -27,7 +27,7 @@ startBtn.addEventListener("click", () => {
     
     // Build player 1 UI
     const P1GBElement = document.createElement('div');
-    P1GBElement.classList = "player1 board";
+    P1GBElement.classList = "player1 board grey";
 
     P1GB.board.forEach((row) => {
         row.forEach((space) => {
