@@ -4,12 +4,14 @@ const startBtn = document.getElementById("start");
 startBtn.addEventListener("click", () => {
 
     const body = document.querySelector("body");
-
+    
+    // Remove start menu elements
     while (body.lastChild) {
         if (body.lastChild.tagName === 'H1') break;
         body.removeChild(body.lastChild);
     };
 
+    // Build game objects
     const P1 = Player();
     const P2 = Player();
     P2.computer = true;
@@ -23,6 +25,7 @@ startBtn.addEventListener("click", () => {
         P2GB.addShip(Ship(size), index, 0, "vertical");
     });
     
+    // Build player 1 UI
     const P1GBElement = document.createElement('div');
     P1GBElement.classList = "player1 board";
 
@@ -49,7 +52,8 @@ startBtn.addEventListener("click", () => {
             P1GBElement.appendChild(spaceElement);
         });
     });
-        
+       
+    // Build player 2 UI
     const P2GBElement = document.createElement('div');
     P2GBElement.classList = "player2 board";
 
@@ -80,6 +84,7 @@ startBtn.addEventListener("click", () => {
     body.appendChild(P1GBElement);
     body.appendChild(P2GBElement);
 
+    // Start the game loop
     // while (!P1GB.allShipsSunk() || P2GB.allShipsSunk()) {
         
     // };
