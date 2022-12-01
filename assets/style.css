@@ -44,6 +44,7 @@ h1 {
     color: white;
     text-align: center;
     border: 1px solid #d70000;
+    pointer-events: auto;
 }
 
 .space.enemy {
@@ -56,4 +57,8 @@ h1 {
 
 .board.grey > .space {
     border-color: #7b2a2a;
+}
+
+.player2.board.grey > .space {
+    pointer-events: none;
 }
