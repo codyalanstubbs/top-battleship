@@ -104,7 +104,17 @@ export const Player = () => {
             xAttack = Math.floor(Math.random() * (9 - 0 + 1)) + 0;
             yAttack = Math.floor(Math.random() * (9 - 0 + 1)) + 0;
         }
-        return enemyGameboard.receiveAttack(xAttack, yAttack);
+
+        let attackResult = enemyGameboard.receiveAttack(xAttack, yAttack)
+
+        // Check if the receivedAttack was invalid - only relevant for the 
+        // computer player since humans won't be able to click a space twice
+        // because of the click event
+        if (attackResult.result === "invalid") {
+            attackResult = attack(enemyGameboard, x, y, computer);
+        }
+
+        return attackResult;
     };
 
     return {attack};
