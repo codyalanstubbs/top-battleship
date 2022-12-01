@@ -92,7 +92,22 @@ export const Gameboard = () => {
         return true;
     }
 
-    return {ships, board, addShip, receiveAttack, allShipsSunk};
+    const getShipSpaces = () => {
+        let shipSpaces = [];
+        let counter = 0;
+        for (let i = 0; i < 10; i++) {
+            for (let j = 0; j < 10; j++) {
+                counter++;
+                if (board[i][j] !== null) shipSpaces.push(counter)
+            }
+        }
+        return shipSpaces;
+    }
+
+    return {
+        ships, board, addShip, receiveAttack, 
+        allShipsSunk, getShipSpaces
+    };
 }
 
 export const Player = () => {
