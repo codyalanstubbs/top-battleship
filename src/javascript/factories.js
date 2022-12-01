@@ -74,14 +74,14 @@ export const Gameboard = () => {
     const receiveAttack = (x, y) => {
         if (board[y][x] === null) {
             board[y][x] = 'miss';
-            return board[y][x];
+            return {xAttack: x, yAttack: y, result: board[y][x]};
         } else if (board[y][x] !== null && board[y][x] !== 'miss' && board[y][x] !== 'hit') {
             const shipIndex = board[y][x];
             board[y][x] = 'hit';
             ships[shipIndex].hit();
-            return 'hit';
+            return {xAttack: x, yAttack: y, result: 'hit'};
         } else {
-            return 'invalid';
+            return {xAttack: x, yAttack: y, result: 'invalid'};
         }
     }
 

@@ -66,15 +66,15 @@ startBtn.addEventListener("click", () => {
 
             spaceElement.addEventListener("click", () => {
 
-                const result = P1.attack(P2GB, spaceIndex, rowIndex);
+                const attackResult = P1.attack(P2GB, spaceIndex, rowIndex);
 
-                if (result === "miss") {
+                if (attackResult.result === "miss") {
                     spaceElement.textContent = "X";
                     spaceElement.classList = "space hit";
-                } else if (result === "hit") {
+                } else if (attackResult.result === "hit") {
                     spaceElement.textContent = "O";
                     spaceElement.classList = "space hit";
-                } else if (result === "invalid") {
+                } else if (attackResult.result === "invalid") {
                     alert("Move Invalid");
                 }
                 
