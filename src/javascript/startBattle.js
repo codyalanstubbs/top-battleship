@@ -117,7 +117,7 @@ startBtn.addEventListener("click", () => {
                             if (body.lastChild.tagName === 'H1') break;
                             body.removeChild(body.lastChild);
                         };
-                        body.lastChild.textContent = "Player 1 wins!";
+                        body.lastChild.textContent = "Player 2 wins!";
                     }
 
                 }, 2000)
