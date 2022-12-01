@@ -65,10 +65,13 @@ startBtn.addEventListener("click", () => {
             spaceElement.classList = "space enemy";
             spaceElement.setAttribute("id", spaceIndex);
 
+            // If P1 clicks, then...
             spaceElement.addEventListener("click", () => {
                 
+                // ...have P1's object attack player 2' gameboard
                 const attackResult = P1.attack(P2GB, spaceIndex, rowIndex);
 
+                // Modify P2's DOM gameboard accordingly
                 if (attackResult.result === "miss") {
                     spaceElement.textContent = "X";
                     spaceElement.classList = "space hit";
@@ -76,19 +79,23 @@ startBtn.addEventListener("click", () => {
                     spaceElement.textContent = "O";
                     spaceElement.classList = "space hit";
                 } else if (attackResult.result === "invalid") {
-                    alert("Move Invalid");
+                    alert("Move Invalid"); // This should not happen
                 }
 
+                // Switch the grey coloring to indicate a shift of turns
                 P2GBElement.classList.toggle("grey");
                 P1GBElement.classList.toggle("grey");
 
+                // Make the computer's move time delayed
                 setTimeout(() => {
 
+                    // Delay the transition back to P1's turn delayed
                     setTimeout(() => {
                         P2GBElement.classList.toggle("grey");
                         P1GBElement.classList.toggle("grey");
                     }, 1000);
 
+                    // Check if P1 destroyed all of P2's ships
                     if (P2GB.allShipsSunk()) {
                         // Remove start menu elements
                         while (body.lastChild) {
@@ -98,9 +105,11 @@ startBtn.addEventListener("click", () => {
                         body.lastChild.textContent = "Player 1 wins!";
                     }
                     
+                    // P2 computer attacks P1
                     const computerAttack = P2.attack(P1GB, 0, 0, true);
                     const P1AttackedSpace = document.querySelector(`#P1-${computerAttack.yAttack}-${computerAttack.xAttack}`);
     
+                    // Modify P1's gameboard accordingly
                     if (computerAttack.result === "miss") {
                         P1AttackedSpace.textContent = "X";
                         P1AttackedSpace.classList = "space miss";
@@ -108,9 +117,10 @@ startBtn.addEventListener("click", () => {
                         P1AttackedSpace.textContent = "O";
                         P1AttackedSpace.classList = "space hit";
                     } else if (computerAttack.result === "invalid") {
-                        alert("Move Invalid");
+                        alert("Move Invalid"); // ...should not happen
                     }
-    
+                    
+                    // Check if P2 destroyed all of P1's ships
                     if (P1GB.allShipsSunk()) {
                         // Remove start menu elements
                         while (body.lastChild) {
