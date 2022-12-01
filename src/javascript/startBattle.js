@@ -37,7 +37,7 @@ startBtn.addEventListener("click", () => {
             spaceElement.setAttribute("id", "P1-"+rowIndex+"-"+spaceIndex);
 
             if (space === null) {
-                spaceElement.textContent = "~";
+                spaceElement.textContent = "";
                 spaceElement.classList = "space";
             } else if (space >= 0) {
                 spaceElement.textContent = space;
