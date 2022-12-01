@@ -79,6 +79,15 @@ startBtn.addEventListener("click", () => {
                     alert("Move Invalid");
                 }
 
+                if (P2GB.allShipsSunk()) {
+                    // Remove start menu elements
+                    while (body.lastChild) {
+                        if (body.lastChild.tagName === 'H1') break;
+                        body.removeChild(body.lastChild);
+                    };
+                    body.lastChild.textContent = "Player 1 wins!";
+                }
+
                 const computerAttack = P2.attack(P1GB, 0, 0, true);
                 const P1AttackedSpace = document.querySelector(`#P1-${computerAttack.yAttack}-${computerAttack.xAttack}`);
 
@@ -90,6 +99,15 @@ startBtn.addEventListener("click", () => {
                     P1AttackedSpace.classList = "space hit";
                 } else if (computerAttack.result === "invalid") {
                     alert("Move Invalid");
+                }
+
+                if (P1GB.allShipsSunk()) {
+                    // Remove start menu elements
+                    while (body.lastChild) {
+                        if (body.lastChild.tagName === 'H1') break;
+                        body.removeChild(body.lastChild);
+                    };
+                    body.lastChild.textContent = "Player 1 wins!";
                 }
                 
             });
