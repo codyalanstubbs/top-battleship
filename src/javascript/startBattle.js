@@ -25,9 +25,12 @@ startBtn.addEventListener("click", () => {
     
     const P1GBElement = document.createElement('div');
     P1GBElement.classList = "player1 board";
+
     P1GB.board.forEach((row) => {
         row.forEach((space) => {
+
             const spaceElement = document.createElement('div');
+
             if (space === null) {
                 spaceElement.textContent = "~";
                 spaceElement.classList = "space";
@@ -42,22 +45,23 @@ startBtn.addEventListener("click", () => {
                 spaceElement.textContent = "O";
                 spaceElement.classList = "space hit";
             }
+
             P1GBElement.appendChild(spaceElement);
         });
     });
         
     const P2GBElement = document.createElement('div');
     P2GBElement.classList = "player2 board";
+
     P2GB.board.forEach((row, rowIndex) => {
         row.forEach((space, spaceIndex) => {
+
             const spaceElement = document.createElement('div');
             spaceElement.classList = "space enemy";
             spaceElement.setAttribute("id", spaceIndex);
+
             spaceElement.addEventListener("click", () => {
-                console.log(P2GB.board);
                 const result = P1.attack(P2GB, spaceIndex, rowIndex);
-                console.log(P2GB.board);
-                console.log(result);
                 if (result === "miss") {
                     spaceElement.textContent = "X";
                     spaceElement.classList = "space hit";
@@ -68,6 +72,7 @@ startBtn.addEventListener("click", () => {
                     alert("Move Invalid");
                 }
             });
+
             P2GBElement.appendChild(spaceElement);
         });
     });
@@ -76,6 +81,6 @@ startBtn.addEventListener("click", () => {
     body.appendChild(P2GBElement);
 
     // while (!P1GB.allShipsSunk() || P2GB.allShipsSunk()) {
-    //     alert("playball!")
+        
     // };
 });
