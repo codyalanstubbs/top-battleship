@@ -132,8 +132,15 @@ describe("Valide checking gameboard for sunk ships", () => {
 describe("Make sure added ships cannot overlap", () => {
     const p1Gameboard = Gameboard();
     const anotherShip = Ship(5);
+    
     test("Should return 10 since length of", () => {
         p1Gameboard.addShip(anotherShip, 0, 0, 'vertical');
         expect(p1Gameboard.getShipSpaces()).toStrictEqual([1,11,21,31,41]);
+    });
+
+    test("Should return 10 since length of", () => {
+        p1Gameboard.addShip(anotherShip, 0, 0, 'vertical');
+        const result = p1Gameboard.addShip(anotherShip, 0, 0, 'vertical');
+        expect(result).toStrictEqual(false);
     });
 });

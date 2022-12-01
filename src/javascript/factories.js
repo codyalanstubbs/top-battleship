@@ -51,26 +51,45 @@ export const Gameboard = () => {
     const addShip = (aShip, startX, startY, axis) => {
         aShip.setCoord(startX, startY, axis);
 
-        const shipIndex     = ships.push(aShip) - 1;
         const shipStartX    = aShip.getStartCoord()[0];
         const shipStartY    = aShip.getStartCoord()[1];
         const shipEndX      = aShip.getEndCoord()[0];
         const shipEndY      = aShip.getEndCoord()[1];
         let i;
+        let shipIndex;
 
-        if (axis === 'horizontal') {
-            for (i = shipStartX; i <= shipEndX; i++) {
-                board[shipStartY][i] = shipIndex;
+        const potentialShipSpaces = getPotentialShipSpaces(shipStartX , shipEndX, shipStartY, shipEndY);
+        const shipSpaces = getShipSpaces();
+
+        // Check if potential square is not already taken in gameboard...
+        if (checkPotentialNotInGameboard(potentialShipSpaces, shipSpaces)) {
+
+            // ...if not then add it to the ships array and board 
+            shipIndex = ships.push(aShip) - 1;
+
+            if (axis === 'horizontal') {
+
+                for (i = shipStartX; i <= shipEndX; i++) {
+                    board[shipStartY][i] = shipIndex;
+                }
+
+            } else if (axis === 'vertical') {
+
+                for (i = shipStartY; i <= shipEndY; i++) {
+                    board[i][shipStartX] = shipIndex;
+                }
+
             }
-        } else if (axis === 'vertical') {
-            for (i = shipStartY; i <= shipEndY; i++) {
-                board[i][shipStartX] = shipIndex;
-            }
+
+            return board;
+            
+        } else {
+            // ...if it is taken, then return false
+            return false;
         }
 
-        return board;
-    }
-
+    };
+    
     const receiveAttack = (x, y) => {
         if (board[y][x] === null) {
             board[y][x] = 'miss';
@@ -103,6 +122,27 @@ export const Gameboard = () => {
         }
         return shipSpaces;
     }
+
+    const getPotentialShipSpaces = (startX, endX, startY, endY) => {
+        let potentialShipSpaces = [];
+        
+        if (startX === endX) {
+            for (let i = startY; i <= endY; i++) {
+                potentialShipSpaces.push(i*10 + startX + 1);  
+            }
+        } else if (startY === endY) {
+            for (let i = startX; i <= endX; i++) {
+                potentialShipSpaces.push(startY*10 + i + 1);  
+            }
+        };
+
+        return potentialShipSpaces;
+    };
+
+    const checkPotentialNotInGameboard = (potentialShipSpaces, shipSpaces) => {
+        // Check if any potential space is in the array of actual spaces taken
+        return !shipSpaces.some(r => potentialShipSpaces.indexOf(r) >= 0);
+    };
 
     return {
         ships, board, addShip, receiveAttack, 
