@@ -96,9 +96,8 @@ export const Gameboard = () => {
 }
 
 export const Player = () => {
-    let computer = false;
 
-    const attack = (enemyGameboard, x, y) => {
+    const attack = (enemyGameboard, x, y, computer = false) => {
         let xAttack = x;
         let yAttack = y;
         if (computer === true) {
@@ -108,5 +107,5 @@ export const Player = () => {
         return enemyGameboard.receiveAttack(xAttack, yAttack);
     };
 
-    return {computer, attack};
+    return {attack};
 }

@@ -30,14 +30,20 @@ describe("Validate non-computer player can attack player two with hit and miss",
 });
 
 describe("Validate a computer player", () => {
-    test("Should confirm player 2 is a computer by returning true", () => {
-        expect(playerTwo.computer).toBe(true);
-    });
-    
     test("Should return attack coordinates and return 'miss'", () => {
-        const result00P2 = playerTwo.attack(playerOneGB, 0, 0);
-        expect(result00P2.xAttack).toBe(0);
-        expect(result00P2.yAttack).toBe(0);
+        // Using negative numbers as inputs since the true argument 
+        // should change the x and y values because it indicates a computer
+        // player is attacking
+        const result00P2 = playerTwo.attack(playerOneGB, -1, -1, true);
+
+        expect(result00P2.xAttack).toBeGreaterThanOrEqual(0);
+        expect(result00P2.xAttack).not.toBeGreaterThan(9);
+        expect(result00P2.xAttack).not.toBeLessThan(0);
+
+        expect(result00P2.yAttack).toBeGreaterThanOrEqual(0);
+        expect(result00P2.yAttack).not.toBeGreaterThan(9);
+        expect(result00P2.yAttack).not.toBeLessThan(0);
+
         expect(result00P2.result).toBe('miss');
         expect(result00P2.result).not.toBe('hit');
         expect(result00P2.result).not.toBe('invalid');
