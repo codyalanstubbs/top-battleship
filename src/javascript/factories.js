@@ -144,9 +144,51 @@ export const Gameboard = () => {
         return !shipSpaces.some(r => potentialShipSpaces.indexOf(r) >= 0);
     };
 
+    const addShipRandomly = (aShip) => {
+
+        // Determine the ships axis
+        let axis;
+        const zeroOne = Math.round(Math.random());
+        (zeroOne === 0) ? axis = "vertical" : axis = "horizontal";
+        
+        // Determine the ships starting coordinates
+        let x = Math.floor(Math.random() * (9 - 0 + 1)) + 0;
+        let y = Math.floor(Math.random() * (9 - 0 + 1)) + 0;
+    
+        if (axis === "vertical") {
+
+            // Check that the ship is on the board...
+            // ...if not then keep changing y until it is
+            while (y + aShip.getLength() > 9) {
+                y = Math.floor(Math.random() * (9 - 0 + 1)) + 0;
+            };
+    
+        } else if (axis === "horizontal") {
+                        
+            // Check that the ship is on the board...
+            // ...if not then keep changing x until it is
+            while (x + aShip.getLength() > 9) {
+                x = Math.floor(Math.random() * (9 - 0 + 1)) + 0;
+            };
+            
+        }
+        
+        // Add the ship to the gameboard
+        const addedShipResult = addShip(aShip, x, y, axis);
+    
+        // If the ship was not placed successfully...
+        if (addedShipResult === false) {
+            // ...keeping recursively run this function until it 
+            // provides a successfuly result
+            addShipRandomly(aShip);
+        }
+    
+        return addedShipResult;
+    };
+
     return {
         ships, board, addShip, receiveAttack, 
-        allShipsSunk, getShipSpaces
+        allShipsSunk, getShipSpaces, addShipRandomly
     };
 }
 
