@@ -21,8 +21,8 @@ startBtn.addEventListener("click", () => {
     const shipSizes = [5, 4, 3, 3, 2];
 
     shipSizes.forEach((size, index) => {
-        P1GB.addShip(Ship(size), 0, index, "horizontal");
-        P2GB.addShip(Ship(size), index, 0, "vertical");
+        P1GB.addShipRandomly(Ship(size));
+        P2GB.addShipRandomly(Ship(size));
     });
     
     // Build player 1 UI
