@@ -56,7 +56,8 @@ h2 {
     cursor: crosshair;
 }
 
-.space.enemy:hover {
+.space.enemy:hover, 
+.enemy > .space:hover {
     border: 1px solid #00d700;
 }
 
@@ -66,4 +67,23 @@ h2 {
 
 .player2.board.grey > .space {
     pointer-events: none;
+}
+
+.invisible > .space {
+    color: #d70000;
+    background-color: #d70000;
+}
+
+.no-events > .space {
+    pointer-events: none;
+}
+
+.no-events > .space:hover {
+    border: 1px solid #d70000;
+}
+
+.board-mask {
+    background-color: #ffcfcf;
+    height: 210px;
+    width: 209px;
 }
