@@ -169,3 +169,17 @@ describe("Check add ships randomly works for 1 ship", () => {
     });
 
 });
+
+describe("Check add ships randomly works for 5 ships", () => {
+    const shipLengths = [5, 4, 3, 3, 2];
+    const p1Gameboard = Gameboard();
+
+    shipLengths.forEach((length) => {
+        const anotherShip = Ship(length);
+        p1Gameboard.addShipRandomly(anotherShip);
+    })
+
+    test("Should return 5", () => {
+        expect(p1Gameboard.ships.length).toBe(5);
+    });
+});
