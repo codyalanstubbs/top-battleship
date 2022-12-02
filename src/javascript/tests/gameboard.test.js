@@ -144,3 +144,28 @@ describe("Make sure added ships cannot overlap", () => {
         expect(result).toStrictEqual(false);
     });
 });
+
+describe("Check add ships randomly works for 1 ship", () => {
+    const shipLength = 5;
+    const p1Gameboard = Gameboard();
+    const anotherShip = Ship(shipLength);
+    
+    p1Gameboard.addShipRandomly(anotherShip);
+    let shipSpaces = p1Gameboard.getShipSpaces();
+
+    test("Should return board array - not false", () => {
+        expect(shipSpaces).not.toBe(false);
+    });
+
+    test("Should return correct ship length", () => {
+        expect(shipSpaces.length).toBe(shipLength);
+    });
+
+    test("Should return a number between 1 and 100", () => {
+        shipSpaces.forEach((space) => {
+            expect(space).toBeGreaterThanOrEqual(1);
+            expect(space).toBeLessThanOrEqual(100);
+        })
+    });
+
+});
