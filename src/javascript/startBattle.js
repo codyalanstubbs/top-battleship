@@ -1,7 +1,7 @@
 import { Ship, Gameboard, Player } from "./factories";
 
-const startBtn = document.getElementById("start");
-startBtn.addEventListener("click", () => {
+const startComputerBtn = document.querySelector("#start.computer");
+startComputerBtn.addEventListener("click", () => {
 
     const body = document.querySelector("body");
     
