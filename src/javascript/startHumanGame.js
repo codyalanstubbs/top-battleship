@@ -86,7 +86,7 @@ export const startHumanGame = () => {
                 P2GBElement.classList.toggle("no-events");
 
                 // ...have P1's object attack player 2' gameboard
-                const attackResult = P1.attack(P2GB, spaceIndex, rowIndex);
+                const attackResult = P2.attack(P1GB, spaceIndex, rowIndex);
 
                 // Modify P2's DOM gameboard accordingly
                 if (attackResult.result === "miss") {
@@ -134,7 +134,7 @@ export const startHumanGame = () => {
                 P2GBElement.classList.toggle("no-events");
 
                 // ...have P2's object attack player 1's gameboard
-                const attackResult = P2.attack(P1GB, spaceIndex, rowIndex);
+                const attackResult = P1.attack(P2GB, spaceIndex, rowIndex);
 
                 // Modify P1's DOM gameboard accordingly
                 if (attackResult.result === "miss") {
