@@ -37,10 +37,16 @@ export const startHumanGame = () => {
         nextTurnBtn.classList.toggle("invisible");
 
         // Switch the grey coloring to indicate a shift of turns
-        P1GBElement.classList.toggle("enemy");
-        P2GBElement.classList.toggle("enemy");
-        P1GBElement.classList.toggle("invisible");
-        P2GBElement.classList.toggle("invisible");
+        if (nextTurnBtn.id === "1") {
+            P1GBElement.classList.toggle("no-events");
+            P1GBElement.classList.toggle("enemy");
+            P2GBElement.classList.toggle("invisible");
+
+        } else if (nextTurnBtn.id === "2")  {
+            P2GBElement.classList.toggle("no-events");
+            P2GBElement.classList.toggle("enemy");
+            P1GBElement.classList.toggle("invisible");
+        }
 
         // Check if P2 destroyed all of P1's ships
         if (P1GB.allShipsSunk()) {
@@ -66,7 +72,7 @@ export const startHumanGame = () => {
 
     // Build player 1 UI
     const P1GBElement = document.createElement('div');
-    P1GBElement.classList = "player1 board enemy";
+    P1GBElement.classList = "player1 board invisible no-events";
     
     const P1Spaces = document.createElement('div');
     P1Spaces.classList = "player1 spaces";
@@ -77,13 +83,24 @@ export const startHumanGame = () => {
             const spaceElement = document.createElement('div');
             spaceElement.classList = "space";
             spaceElement.setAttribute("id", "P1-" + rowIndex + "-" + spaceIndex);
+    
+            if (space === null) {
+                spaceElement.textContent = "";
+                spaceElement.classList = "space";
+            } else if (space >= 0) {
+                spaceElement.textContent = space;
+                spaceElement.classList = "space shipSpace";
+            }
 
-            // If P1 clicks, then...
+            // If P2 clicks, then...
             spaceElement.addEventListener("click", () => {
 
+                nextTurnBtn.setAttribute("id", "2");
                 nextTurnBtn.classList.toggle("invisible");
+                
+                P2GBElement.classList.toggle("invisible");
                 P1GBElement.classList.toggle("no-events");
-                P2GBElement.classList.toggle("no-events");
+                P1GBElement.classList.toggle("enemy");
 
                 // ...have P1's object attack player 2' gameboard
                 const attackResult = P2.attack(P1GB, spaceIndex, rowIndex);
@@ -113,7 +130,7 @@ export const startHumanGame = () => {
 
     // Build player 2 UI
     const P2GBElement = document.createElement('div');
-    P2GBElement.classList = "player2 board invisible no-events";
+    P2GBElement.classList = "player2 board enemy";
 
     const P2Spaces = document.createElement('div');
     P2Spaces.classList = "player2 spaces";
@@ -124,14 +141,24 @@ export const startHumanGame = () => {
             const spaceElement = document.createElement('div');
             spaceElement.classList = "space";
             spaceElement.setAttribute("id", spaceIndex);
+    
+            if (space === null) {
+                spaceElement.textContent = "";
+                spaceElement.classList = "space";
+            } else if (space >= 0) {
+                spaceElement.textContent = space;
+                spaceElement.classList = "space shipSpace";
+            }
 
-
-            // If P2 clicks, then...
+            // If P1 clicks, then...
             spaceElement.addEventListener("click", () => {
 
-                nextTurnBtn.classList.toggle("invisible");
-                P1GBElement.classList.toggle("no-events");
+                nextTurnBtn.setAttribute("id", "1");
+                nextTurnBtn.classList.toggle("invisible");    
+
+                P1GBElement.classList.toggle("invisible");          
                 P2GBElement.classList.toggle("no-events");
+                P2GBElement.classList.toggle("enemy");
 
                 // ...have P2's object attack player 1's gameboard
                 const attackResult = P1.attack(P2GB, spaceIndex, rowIndex);
