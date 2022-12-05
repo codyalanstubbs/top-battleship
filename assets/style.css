@@ -65,7 +65,7 @@ h2 {
 }
 
 .space.enemy:hover, 
-.enemy > .space:hover {
+.enemy > .spaces > .space:hover {
     border: 1px solid #00d700;
 }
 
@@ -77,16 +77,16 @@ h2 {
     pointer-events: none;
 }
 
-.invisible > .space {
+.invisible > .spaces > .space {
     color: #d70000;
     background-color: #d70000;
 }
 
-.no-events > .space {
+.no-events > .spaces > .space {
     pointer-events: none;
 }
 
-.no-events > .space:hover {
+.no-events > .spaces > .space:hover {
     border: 1px solid #d70000;
 }
 
