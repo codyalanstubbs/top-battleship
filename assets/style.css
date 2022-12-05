@@ -147,3 +147,17 @@ h2 {
     width: 6px;
     height: 6px;
 }
+
+.invisible > .spaces > .shipSpace,
+.shipSpace {
+    color: black;
+    font-weight: 900;
+}
+
+.invisible > .spaces > .hit {
+    color: #fff;
+}
+
+.hit {
+    pointer-events: none;
+}
