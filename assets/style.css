@@ -22,18 +22,29 @@ h2 {
     filter: invert(11%) sepia(99%) saturate(5357%) hue-rotate(6deg) brightness(89%) contrast(119%);
 }
 
-#start {
+#start,
+.next-turn {
     background-color: #d70000;
     color: white;
     border: 1px solid white;
     font-weight: 900;
+    pointer-events: all;
 }
 
-#start:hover {
+#start:hover,
+.next-turn:hover {
     cursor: pointer;
     background-color: white;
     color: #d70000;
     border: 1px solid #d70000;
+}
+
+.next-turn.invisible {
+    cursor: default;
+    pointer-events: none;
+    background-color: #000;
+    color: #000;
+    border: 1px solid #000;
 }
 
 .board {
@@ -88,12 +99,6 @@ h2 {
 
 .no-events > .spaces > .space:hover {
     border: 1px solid #d70000;
-}
-
-.board-mask {
-    background-color: #ffcfcf;
-    height: 210px;
-    width: 209px;
 }
 
 .gameboards {
