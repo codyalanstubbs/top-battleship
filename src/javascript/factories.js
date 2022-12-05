@@ -70,13 +70,13 @@ export const Gameboard = () => {
             if (axis === 'horizontal') {
 
                 for (i = shipStartX; i <= shipEndX; i++) {
-                    board[shipStartY][i] = shipIndex;
+                    board[shipStartY][i] = `${shipIndex}-${i}`;
                 }
 
             } else if (axis === 'vertical') {
 
                 for (i = shipStartY; i <= shipEndY; i++) {
-                    board[i][shipStartX] = shipIndex;
+                    board[i][shipStartX] = `${shipIndex}-${i}`;
                 }
 
             }
@@ -95,7 +95,7 @@ export const Gameboard = () => {
             board[y][x] = 'miss';
             return {xAttack: x, yAttack: y, result: board[y][x]};
         } else if (board[y][x] !== null && board[y][x] !== 'miss' && board[y][x] !== 'hit') {
-            const shipIndex = board[y][x];
+            const shipIndex = board[y][x].split("-")[0];
             board[y][x] = 'hit';
             ships[shipIndex].hit();
             return {xAttack: x, yAttack: y, result: 'hit'};

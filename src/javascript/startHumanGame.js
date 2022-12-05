@@ -82,13 +82,18 @@ export const startHumanGame = () => {
 
             const spaceElement = document.createElement('div');
             spaceElement.classList = "space";
-            spaceElement.setAttribute("id", "P1-" + rowIndex + "-" + spaceIndex);
     
             if (space === null) {
                 spaceElement.textContent = "";
                 spaceElement.classList = "space";
-            } else if (space >= 0) {
-                spaceElement.textContent = space;
+            } else if (space.includes("-")) {
+
+                // Add the ship index to space as text content
+                spaceElement.textContent = space.split("-")[0];
+
+                // Add an id with ship-shipSpace indices for linking to shiptracker
+                spaceElement.setAttribute("id", space.split("-")[0] + "-" + space.split("-")[1]);
+
                 spaceElement.classList = "space shipSpace";
             }
 
@@ -140,13 +145,18 @@ export const startHumanGame = () => {
 
             const spaceElement = document.createElement('div');
             spaceElement.classList = "space";
-            spaceElement.setAttribute("id", spaceIndex);
     
             if (space === null) {
                 spaceElement.textContent = "";
                 spaceElement.classList = "space";
-            } else if (space >= 0) {
-                spaceElement.textContent = space;
+            } else if (space.includes("-")) {
+
+                // Add the ship index to space as text content
+                spaceElement.textContent = space.split("-")[0];
+
+                // Add an id with ship-shipSpace indices for linking to shiptracker
+                spaceElement.setAttribute("id", space.split("-")[0] + "-" + space.split("-")[1]);
+                
                 spaceElement.classList = "space shipSpace";
             }
 
