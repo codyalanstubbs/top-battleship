@@ -39,7 +39,7 @@ export const startComputerGame = () => {
                 spaceElement.classList = "space";
             } else if (space >= 0) {
                 spaceElement.textContent = space;
-                spaceElement.classList = "space ship";
+                spaceElement.classList = "space shipSpace";
             } else if (space === "miss") {
                 spaceElement.textContent = "X";
                 spaceElement.classList = "space miss";
