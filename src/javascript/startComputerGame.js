@@ -27,6 +27,9 @@ export const startComputerGame = () => {
     const P1GBElement = document.createElement('div');
     P1GBElement.classList = "player1 board grey";
     
+    const P1Spaces = document.createElement('div');
+    P1Spaces.classList = "player1 spaces";
+    
     P1GB.board.forEach((row, rowIndex) => {
         row.forEach((space, spaceIndex) => {
     
@@ -48,13 +51,23 @@ export const startComputerGame = () => {
                 spaceElement.classList = "space hit";
             }
     
-            P1GBElement.appendChild(spaceElement);
+            P1Spaces.appendChild(spaceElement);
         });
     });
+
+    const P1Title = document.createElement("h3");
+    P1Title.textContent = "You";
+
+    P1GBElement.appendChild(P1Title);
+    P1GBElement.appendChild(P1Spaces);
+
     
     // Build player 2 UI
     const P2GBElement = document.createElement('div');
     P2GBElement.classList = "player2 board";
+    
+    const P2Spaces = document.createElement('div');
+    P2Spaces.classList = "player2 spaces";
     
     P2GB.board.forEach((row, rowIndex) => {
         row.forEach((space, spaceIndex) => {
@@ -132,9 +145,15 @@ export const startComputerGame = () => {
     
             });
     
-            P2GBElement.appendChild(spaceElement);
+            P2Spaces.appendChild(spaceElement);
         });
     });
+
+    const P2Title = document.createElement("h3");
+    P2Title.textContent = "Computer";
+
+    P2GBElement.appendChild(P2Title);
+    P2GBElement.appendChild(P2Spaces);
 
     // Build player 1 ship tracker
     const shipTrackerOne = document.createElement("div");
