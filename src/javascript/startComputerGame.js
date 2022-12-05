@@ -135,8 +135,69 @@ export const startComputerGame = () => {
             P2GBElement.appendChild(spaceElement);
         });
     });
+
+    // Build player 1 ship tracker
+    const shipTrackerOne = document.createElement("div");
+    shipTrackerOne.classList = "ship-tracker";
+    shipTrackerOne.setAttribute("id", "one");
+
+    // Build player 2 ship tracker
+    const shipTrackerTwo = document.createElement("div");
+    shipTrackerTwo.classList = "ship-tracker";
+    shipTrackerTwo.setAttribute("id", "two");
     
-    body.appendChild(P1GBElement);
-    body.appendChild(P2GBElement);
+    // Build and add ships to the ship trackers
+    shipSizes.forEach((size, index) => {
+
+        // Build player 1 ship
+        const shipOne = document.createElement("div");
+        shipOne.classList = "ship";
+        shipOne.setAttribute("id", "ship-"+size);
+
+        // Build player 2 ship
+        const shipTwo = document.createElement("div");
+        shipTwo.classList = "ship";
+        shipTwo.setAttribute("id", "ship-"+size);
+
+        for (let i = 0; i < size; i++) {
+            // Build player 1 ship spaces
+            const shipSpaceOne = document.createElement("div");
+            shipSpaceOne.classList = "space";
+
+            // Build player 2 ship spaces
+            const shipSpaceTwo = document.createElement("div");
+            shipSpaceTwo.classList = "space";
+
+            shipOne.appendChild(shipSpaceOne);
+            shipTwo.appendChild(shipSpaceTwo);
+        }
+        
+        shipTrackerOne.appendChild(shipOne);
+        shipTrackerTwo.appendChild(shipTwo);
+    });
+
+    // Build both players gameboards
+    const gameboardOne = document.createElement("div");
+    gameboardOne.classList = "gameboard-one";
+
+    const gameboardTwo = document.createElement("div");
+    gameboardTwo.classList = "gameboard-two";
+
+    // Build the overall gameboards container
+    const gameboardsContainer = document.createElement("div");
+    gameboardsContainer.classList = "gameboards";
+    
+    // Append each element into their respective container
+    gameboardOne.appendChild(shipTrackerOne);
+    gameboardOne.appendChild(P1GBElement);
+
+    gameboardTwo.appendChild(P2GBElement);        
+    gameboardTwo.appendChild(shipTrackerTwo);
+    
+    gameboardsContainer.appendChild(gameboardOne);
+    gameboardsContainer.appendChild(gameboardTwo);
+
+    // Add gameboards container and all children to the docmument body
+    body.appendChild(gameboardsContainer);
 
 }
