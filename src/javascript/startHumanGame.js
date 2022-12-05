@@ -28,13 +28,13 @@ export const startHumanGame = () => {
     });
 
     // Build board mask
-    const boardMask = document.createElement('div');
-    boardMask.classList = "board-mask invisible";
-    boardMask.textContent = "Click here for next player's turn."
+    const nextTurnBtn = document.createElement('div');
+    nextTurnBtn.classList = "next-turn invisible";
+    nextTurnBtn.textContent = "CHANGE TURN";
 
-    boardMask.addEventListener("click", () => {
+    nextTurnBtn.addEventListener("click", () => {
 
-        boardMask.classList.toggle("invisible");
+        nextTurnBtn.classList.toggle("invisible");
 
         // Switch the grey coloring to indicate a shift of turns
         P1GBElement.classList.toggle("enemy");
@@ -81,6 +81,7 @@ export const startHumanGame = () => {
             // If P1 clicks, then...
             spaceElement.addEventListener("click", () => {
 
+                nextTurnBtn.classList.toggle("invisible");
                 P1GBElement.classList.toggle("no-events");
                 P2GBElement.classList.toggle("no-events");
 
@@ -128,6 +129,7 @@ export const startHumanGame = () => {
             // If P2 clicks, then...
             spaceElement.addEventListener("click", () => {
 
+                nextTurnBtn.classList.toggle("invisible");
                 P1GBElement.classList.toggle("no-events");
                 P2GBElement.classList.toggle("no-events");
 
@@ -219,6 +221,7 @@ export const startHumanGame = () => {
     gameboardsContainer.appendChild(gameboardTwo);
 
     // Add gameboards container and all children to the docmument body
+    body.appendChild(nextTurnBtn);
     body.appendChild(gameboardsContainer);
 
 }
