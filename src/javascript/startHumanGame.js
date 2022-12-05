@@ -27,7 +27,7 @@ export const startHumanGame = () => {
         P2GB.addShipRandomly(Ship(size));
     });
 
-    // Build board mask
+    // Build next turn button
     const nextTurnBtn = document.createElement('div');
     nextTurnBtn.classList = "next-turn invisible";
     nextTurnBtn.textContent = "CHANGE TURN";
