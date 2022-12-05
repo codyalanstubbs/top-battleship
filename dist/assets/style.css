@@ -87,3 +87,48 @@ h2 {
     height: 210px;
     width: 209px;
 }
+
+.gameboards {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.gameboard-one,
+.gameboard-two {
+    display: flex;
+    gap: 10px;
+}
+
+.gameboard-one {
+    margin-right: 50px;
+}
+
+.gameboard-two {
+    margin-left: 50px;
+}
+
+#one.ship-tracker {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 2px;
+}
+
+#two.ship-tracker {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+}
+
+.ship {
+    display: flex;
+}
+
+.ship > .space {
+    width: 6px;
+    height: 6px;
+}
