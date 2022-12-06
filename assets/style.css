@@ -161,3 +161,7 @@ h2 {
 .hit {
     pointer-events: none;
 }
+
+.filled > .space {
+    background: #d70000;
+}
