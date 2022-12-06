@@ -59,6 +59,66 @@ describe("Validate adding ships to gameboard", () => {
     test("Should return an array with with both a horizontal ship (index=0) and vertical ship (index=1)", () => {
         expect(p1Gameboard.addShip(Ship(5), 9, 0, 'vertical')).toStrictEqual(gameboardWithShipV);
     });
+
+    // 
+    const gameboardWithShipVH = [
+        ['0-0', '0-1', '0-2',  '0-3',  '0-4',   null,   null,   null,   null,   '1-0'],
+        [null,  null,   null,   null,   null,   null,   null,   null,   null,   '1-1'],
+        ['2-0', '2-1', '2-2',  '2-3',  '2-4',   null,   null,   null,   null,   '1-2'],
+        [null,  null,   null,   null,   null,   null,   null,   null,   null,   '1-3'],
+        [null,  null,   null,   null,   null,   null,   null,   null,   null,   '1-4'],
+        [null,  null,   null,   null,   null,   null,   null,   null,   null,   null],
+        [null,  null,   null,   null,   null,   null,   null,   null,   null,   null],
+        [null,  null,   null,   null,   null,   null,   null,   null,   null,   null],
+        [null,  null,   null,   null,   null,   null,   null,   null,   null,   null],
+        [null,  null,   null,   null,   null,   null,   null,   null,   null,   null]
+    ];
+
+    test("Should return an array with two horizontal ships (index=0 & 2) and vertical ship (index=1)", () => {
+        expect(p1Gameboard.addShip(Ship(5), 0, 2, 'horizontal')).toStrictEqual(gameboardWithShipVH);
+    });
+
+    test("Should return false since it occurs right below ship (index=1)", () => {
+        expect(p1Gameboard.addShip(Ship(3), 7, 5, 'horizontal')).toStrictEqual(false);
+    });
+    
+    const gameboardWith4Ships = [
+        ['0-0', '0-1', '0-2',  '0-3',  '0-4',   null,   null,   null,   null,   '1-0'],
+        [null,  null,   null,   null,   null,   null,   null,   null,   null,   '1-1'],
+        ['2-0', '2-1', '2-2',  '2-3',  '2-4',   null,   null,   null,   null,   '1-2'],
+        [null,  null,   null,   null,   null,   null,   null,   null,   null,   '1-3'],
+        [null,  null,   null,   null,   null,   null,   null,   null,   null,   '1-4'],
+        [null,  null,   null,   null,   null,   null,   null,   null,   null,   null],
+        ['3-0', '3-1', '3-2',  '3-3',  '3-4',   null,   null,   null,   null,   null],
+        [null,  null,   null,   null,   null,   null,   null,   null,   null,   null],
+        [null,  null,   null,   null,   null,   null,   null,   null,   null,   null],
+        [null,  null,   null,   null,   null,   null,   null,   null,   null,   null]
+    ];
+
+    test("Should return false since it occurs right below ship (index=1)", () => {
+        expect(p1Gameboard.addShip(Ship(5), 0, 6, 'horizontal')).toStrictEqual(gameboardWith4Ships);
+    });
+
+    test("Should return false since it occurs right below ship (index=1)", () => {
+        expect(p1Gameboard.addShip(Ship(3), 7, 5, 'horizontal')).toStrictEqual(false);
+    });
+    
+    const gameboardWith5Ships = [
+        ['0-0', '0-1', '0-2',  '0-3',  '0-4',   null,   null,   null,   null,   '1-0'],
+        [null,  null,   null,   null,   null,   null,   null,   null,   null,   '1-1'],
+        ['2-0', '2-1', '2-2',  '2-3',  '2-4',   null,   null,   null,   null,   '1-2'],
+        [null,  null,   null,   null,   null,   null,   null,   null,   null,   '1-3'],
+        [null,  null,   null,   null,   null,   null,   null,   null,   null,   '1-4'],
+        [null,  null,   null,   null,   null,   null,   null,   null,   null,   null],
+        ['3-0', '3-1', '3-2',  '3-3',  '3-4',   null,   null,   null,   null,   null],
+        [null,  null,   null,   null,   null,   null,   null,   '4-0',  '4-1',  '4-2'],
+        [null,  null,   null,   null,   null,   null,   null,   null,   null,   null],
+        [null,  null,   null,   null,   null,   null,   null,   null,   null,   null]
+    ];
+    
+    test("Should return false since it occurs right below ship (index=1)", () => {
+        expect(p1Gameboard.addShip(Ship(3), 7, 7, 'horizontal')).toStrictEqual(gameboardWith5Ships);
+    });
 })
 
 describe("Validate successful hits", () => {
