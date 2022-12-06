@@ -61,10 +61,15 @@ export const Gameboard = () => {
         const potentialShipSpaces = getPotentialShipSpaces(shipStartX , shipEndX, shipStartY, shipEndY);
         const shipSpaces = getShipSpaces();
 
-        // Check if potential square is not already taken in gameboard...
-        if (checkPotentialNotInGameboard(potentialShipSpaces, shipSpaces)) {
+        // Check if...
+        if (
+            // ...potential spaces are not already taken in gameboard...AND
+            checkPotentialSpacesNotOccupied(potentialShipSpaces, shipSpaces) &&
+            // ...adjacent spaces are not already taken in gameboard...
+            checkAdjacentSpacesNotOccupied(potentialShipSpaces, shipSpaces, axis)
+        ) {
 
-            // ...if not then add it to the ships array and board 
+            // ...if neither then add ship to the ships array and board 
             shipIndex = ships.push(aShip) - 1;
 
             if (axis === 'horizontal') {
@@ -84,7 +89,7 @@ export const Gameboard = () => {
             return board;
             
         } else {
-            // ...if it is taken, then return false
+            // ...if either are taken, then return false
             return false;
         }
 
@@ -139,9 +144,70 @@ export const Gameboard = () => {
         return potentialShipSpaces;
     };
 
-    const checkPotentialNotInGameboard = (potentialShipSpaces, shipSpaces) => {
+    const checkPotentialSpacesNotOccupied = (potentialShipSpaces, shipSpaces) => {
         // Check if any potential space is in the array of actual spaces taken
         return !shipSpaces.some(r => potentialShipSpaces.indexOf(r) >= 0);
+    };
+
+    const checkAdjacentSpacesNotOccupied = (potentialShipSpaces, shipSpaces, axis) => {
+        let adjacentSpaces = [];
+        
+        // Calculate the adjacents spaces for potential ship spaces and...
+        // ...add to adjacentSpaces array
+        potentialShipSpaces.forEach((potentialSpace, index) => {
+
+            if (axis === "vertical") {
+                // For all potential vertical spaces...
+                // ...if ith potential space not on far right, then check i+1 space
+                if (potentialSpace % 10 !== 0) adjacentSpaces.push(potentialSpace +  0 + 1);
+                // ...if ith potential space not on far left, then check i-1 space
+                if ((potentialSpace - 1) % 10 !== 0) adjacentSpaces.push(potentialSpace +  0 - 1);
+
+                if (index === 0) { // If first potential space, then...
+
+                    // ...check adjacent space above potential space
+                    adjacentSpaces.push(potentialSpace - 10 + 0);
+                    // ...also...
+                    // ...if ith potential space not on far right, then check i+1 space
+                    if (potentialSpace % 10 !== 0) adjacentSpaces.push(potentialSpace - 10 + 1);
+                    // ...if ith potential space not on far left, then check i-1 space
+                    if ((potentialSpace - 1) % 10 !== 0) adjacentSpaces.push(potentialSpace - 10 - 1);
+
+                } else if (index === potentialShipSpaces.length-1) {  // If last potential space, then...
+                    // ...check adjacent space below potential space
+                    adjacentSpaces.push(potentialSpace + 10 + 0);
+                    // ...also...
+                    // ...if ith potential space not on far right, then check i+1 space
+                    if (potentialSpace % 10 !== 0) adjacentSpaces.push(potentialSpace + 10 + 1);
+                    // ...if ith potential space not on far left, then check i-1 space
+                    if ((potentialSpace - 1) % 10 !== 0) adjacentSpaces.push(potentialSpace + 10 - 1);
+                }
+
+            } else if (axis === "horizontal") {
+                // For all potential vertical spaces...
+                adjacentSpaces.push(potentialSpace + 10 + 0);
+                adjacentSpaces.push(potentialSpace - 10 + 0);
+                
+                if (index === 0) {
+                    // ...if ith potential space not on far left, then check i-1, i-9, i-11 spaces
+                    if ((potentialSpace - 1) % 10 !== 0) {
+                        adjacentSpaces.push(potentialSpace +  0 - 1);
+                        adjacentSpaces.push(potentialSpace + 10 - 1);
+                        adjacentSpaces.push(potentialSpace - 10 - 1);
+                    }
+                } else if (index === potentialShipSpaces.length-1) {
+                    if (potentialSpace % 10 !== 0) { 
+                        adjacentSpaces.push(potentialSpace +  0 + 1);
+                        adjacentSpaces.push(potentialSpace + 10 + 1);
+                        adjacentSpaces.push(potentialSpace - 10 + 1);
+                    }
+                }
+
+            };
+        })
+
+        // Check if any adjacent space is in the array of actual spaces taken
+        return !shipSpaces.some(r => adjacentSpaces.indexOf(r) >= 0);
     };
 
     const addShipRandomly = (aShip) => {
