@@ -117,6 +117,14 @@ export const startHumanGame = () => {
                 } else if (attackResult.result === "hit") {
                     spaceElement.textContent = "O";
                     spaceElement.classList = "space hit";
+
+                    // Use the shipIndex to check if the ship is sunk..
+                    const shipIndex = spaceElement.id.split("-")[0];
+                    if (P1GB.ships[shipIndex].isSunk()) {
+                        // ...if it is sunk, then fill the ship tracker ship
+                        document.querySelector(`#ship-1-${shipIndex}`).classList.toggle("filled");
+                    }
+
                 } else if (attackResult.result === "invalid") {
                     alert("Move Invalid"); // This should not happen
                 }
@@ -170,16 +178,24 @@ export const startHumanGame = () => {
                 P2GBElement.classList.toggle("no-events");
                 P2GBElement.classList.toggle("enemy");
 
-                // ...have P2's object attack player 1's gameboard
+                // ...have P1's object attack player 2's gameboard
                 const attackResult = P1.attack(P2GB, spaceIndex, rowIndex);
 
-                // Modify P1's DOM gameboard accordingly
+                // Modify P2's DOM gameboard accordingly
                 if (attackResult.result === "miss") {
                     spaceElement.textContent = "X";
                     spaceElement.classList = "space hit";
                 } else if (attackResult.result === "hit") {
                     spaceElement.textContent = "O";
                     spaceElement.classList = "space hit";
+
+                    // Use the shipIndex to check if the ship is sunk..
+                    const shipIndex = spaceElement.id.split("-")[0];
+                    if (P2GB.ships[shipIndex].isSunk()) {
+                        // ...if it is sunk, then fill the ship tracker ship
+                        document.querySelector(`#ship-2-${shipIndex}`).classList.toggle("filled");
+                    }
+
                 } else if (attackResult.result === "invalid") {
                     alert("Move Invalid"); // This should not happen
                 }
@@ -212,12 +228,12 @@ export const startHumanGame = () => {
         // Build player 1 ship
         const shipOne = document.createElement("div");
         shipOne.classList = "ship";
-        shipOne.setAttribute("id", "ship-"+size);
+        shipOne.setAttribute("id", "ship-1-"+index); // ship-playerNumber-shipSpaceIndex
 
         // Build player 2 ship
         const shipTwo = document.createElement("div");
         shipTwo.classList = "ship";
-        shipTwo.setAttribute("id", "ship-"+size);
+        shipTwo.setAttribute("id", "ship-2-"+index); // ship-playerNumber-shipSpaceIndex
 
         for (let i = 0; i < size; i++) {
             // Build player 1 ship spaces

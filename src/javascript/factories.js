@@ -70,13 +70,13 @@ export const Gameboard = () => {
             if (axis === 'horizontal') {
 
                 for (i = shipStartX; i <= shipEndX; i++) {
-                    board[shipStartY][i] = `${shipIndex}-${i}`;
+                    board[shipStartY][i] = `${shipIndex}-${i-shipStartX}`;
                 }
 
             } else if (axis === 'vertical') {
 
                 for (i = shipStartY; i <= shipEndY; i++) {
-                    board[i][shipStartX] = `${shipIndex}-${i}`;
+                    board[i][shipStartX] = `${shipIndex}-${i-shipStartY}`;
                 }
 
             }

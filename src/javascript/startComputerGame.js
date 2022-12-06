@@ -36,13 +36,20 @@ export const startComputerGame = () => {
             const spaceElement = document.createElement('div');
     
             spaceElement.setAttribute("id", "P1-" + rowIndex + "-" + spaceIndex);
-    
+
             if (space === null) {
                 spaceElement.textContent = "";
                 spaceElement.classList = "space";
-            } else if (space >= 0) {
-                spaceElement.textContent = space;
-                spaceElement.classList = "space shipSpace";
+            } else if (space.includes("-")) {
+
+                const shipIndex = space.split("-")[0];
+                const spaceIndex = space.split("-")[1];
+
+                // Add an id with ship-shipSpace indices for linking to shiptracker
+                spaceElement.setAttribute("id", shipIndex + "-" + spaceIndex);
+                spaceElement.textContent = shipIndex;
+                spaceElement.classList = "space";
+
             } else if (space === "miss") {
                 spaceElement.textContent = "X";
                 spaceElement.classList = "space miss";
@@ -89,6 +96,14 @@ export const startComputerGame = () => {
                 } else if (attackResult.result === "hit") {
                     spaceElement.textContent = "O";
                     spaceElement.classList = "space hit";
+                    
+                    // Use the shipIndex to check if the ship is sunk..
+                    const shipIndex = space.split("-")[0];
+                    if (P2GB.ships[shipIndex].isSunk()) {
+                        // ...if it is sunk, then fill the ship tracker ship
+                        document.querySelector(`#ship-2-${shipIndex}`).classList.toggle("filled");
+                    }
+
                 } else if (attackResult.result === "invalid") {
                     alert("Move Invalid"); // This should not happen
                 }
@@ -118,8 +133,12 @@ export const startComputerGame = () => {
     
                     // P2 computer attacks P1
                     const computerAttack = P2.attack(P1GB, 0, 0, true);
-                    const P1AttackedSpace = document.querySelector(`#P1-${computerAttack.yAttack}-${computerAttack.xAttack}`);
-    
+
+                    // Calculate the ith space that corresponds to the attacked space to...
+                    const boardSpaceIndex = computerAttack.yAttack*10 + computerAttack.xAttack;
+                    // ...to get the attacked space element
+                    const P1AttackedSpace = document.querySelectorAll(`.player1.spaces > .space`)[boardSpaceIndex];
+                    
                     // Modify P1's gameboard accordingly
                     if (computerAttack.result === "miss") {
                         P1AttackedSpace.textContent = "X";
@@ -127,6 +146,14 @@ export const startComputerGame = () => {
                     } else if (computerAttack.result === "hit") {
                         P1AttackedSpace.textContent = "O";
                         P1AttackedSpace.classList = "space hit";
+                    
+                        // Use the shipIndex to check if the ship is sunk..
+                        const shipIndex = P1AttackedSpace.id.split("-")[0];
+                        if (P2GB.ships[shipIndex].isSunk()) {
+                            // ...if it is sunk, then fill the ship tracker ship
+                            document.querySelector(`#ship-1-${shipIndex}`).classList.toggle("filled");
+                        }
+    
                     } else if (computerAttack.result === "invalid") {
                         alert("Move Invalid"); // ...should not happen
                     }
@@ -171,12 +198,12 @@ export const startComputerGame = () => {
         // Build player 1 ship
         const shipOne = document.createElement("div");
         shipOne.classList = "ship";
-        shipOne.setAttribute("id", "ship-"+size);
+        shipOne.setAttribute("id", "ship-1-"+index); // ship-playerNumber-shipSpaceIndex
 
         // Build player 2 ship
         const shipTwo = document.createElement("div");
         shipTwo.classList = "ship";
-        shipTwo.setAttribute("id", "ship-"+size);
+        shipTwo.setAttribute("id", "ship-2-"+index); // ship-playerNumber-shipSpaceIndex
 
         for (let i = 0; i < size; i++) {
             // Build player 1 ship spaces
