@@ -24,7 +24,7 @@ describe('Create gameboard', () => {
 describe("Validate adding ships to gameboard", () => {
     const p1Gameboard = Gameboard();
     const gameboardWithShipH = [
-        [0,     0,      0,      0,      0,      null,   null,   null,   null,   null],
+        ['0-0', '0-1',  '0-2',  '0-3',  '0-4',  null,   null,   null,   null,   null],
         [null,  null,   null,   null,   null,   null,   null,   null,   null,   null],
         [null,  null,   null,   null,   null,   null,   null,   null,   null,   null],
         [null,  null,   null,   null,   null,   null,   null,   null,   null,   null],
@@ -44,11 +44,11 @@ describe("Validate adding ships to gameboard", () => {
     // the index of the vertical addition will be 1 instead of zero since the
     // horizontal ship has already been added
     const gameboardWithShipV = [
-        [0,     0,      0,      0,      0,      null,   null,   null,   null,   1],
-        [null,  null,   null,   null,   null,   null,   null,   null,   null,   1],
-        [null,  null,   null,   null,   null,   null,   null,   null,   null,   1],
-        [null,  null,   null,   null,   null,   null,   null,   null,   null,   1],
-        [null,  null,   null,   null,   null,   null,   null,   null,   null,   1],
+        ['0-0', '0-1', '0-2',  '0-3',  '0-4',   null,   null,   null,   null,   '1-0'],
+        [null,  null,   null,   null,   null,   null,   null,   null,   null,   '1-1'],
+        [null,  null,   null,   null,   null,   null,   null,   null,   null,   '1-2'],
+        [null,  null,   null,   null,   null,   null,   null,   null,   null,   '1-3'],
+        [null,  null,   null,   null,   null,   null,   null,   null,   null,   '1-4'],
         [null,  null,   null,   null,   null,   null,   null,   null,   null,   null],
         [null,  null,   null,   null,   null,   null,   null,   null,   null,   null],
         [null,  null,   null,   null,   null,   null,   null,   null,   null,   null],
