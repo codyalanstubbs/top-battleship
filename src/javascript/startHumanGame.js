@@ -42,7 +42,7 @@ export const startHumanGame = () => {
             P1GBElement.classList.toggle("enemy");
             P2GBElement.classList.toggle("invisible");
 
-        } else if (nextTurnBtn.id === "2")  {
+        } else if (nextTurnBtn.id === "2") {
             P2GBElement.classList.toggle("no-events");
             P2GBElement.classList.toggle("enemy");
             P1GBElement.classList.toggle("invisible");
@@ -73,7 +73,7 @@ export const startHumanGame = () => {
     // Build player 1 UI
     const P1GBElement = document.createElement('div');
     P1GBElement.classList = "player1 board invisible no-events";
-    
+
     const P1Spaces = document.createElement('div');
     P1Spaces.classList = "player1 spaces";
 
@@ -82,7 +82,7 @@ export const startHumanGame = () => {
 
             const spaceElement = document.createElement('div');
             spaceElement.classList = "space";
-    
+
             if (space === null) {
                 spaceElement.textContent = "";
                 spaceElement.classList = "space";
@@ -102,7 +102,7 @@ export const startHumanGame = () => {
 
                 nextTurnBtn.setAttribute("id", "2");
                 nextTurnBtn.classList.toggle("invisible");
-                
+
                 P2GBElement.classList.toggle("invisible");
                 P1GBElement.classList.toggle("no-events");
                 P1GBElement.classList.toggle("enemy");
@@ -147,13 +147,13 @@ export const startHumanGame = () => {
 
     const P2Spaces = document.createElement('div');
     P2Spaces.classList = "player2 spaces";
-    
+
     P2GB.board.forEach((row, rowIndex) => {
         row.forEach((space, spaceIndex) => {
 
             const spaceElement = document.createElement('div');
             spaceElement.classList = "space";
-    
+
             if (space === null) {
                 spaceElement.textContent = "";
                 spaceElement.classList = "space";
@@ -164,7 +164,7 @@ export const startHumanGame = () => {
 
                 // Add an id with ship-shipSpace indices for linking to shiptracker
                 spaceElement.setAttribute("id", space.split("-")[0] + "-" + space.split("-")[1]);
-                
+
                 spaceElement.classList = "space shipSpace";
             }
 
@@ -172,9 +172,9 @@ export const startHumanGame = () => {
             spaceElement.addEventListener("click", () => {
 
                 nextTurnBtn.setAttribute("id", "1");
-                nextTurnBtn.classList.toggle("invisible");    
+                nextTurnBtn.classList.toggle("invisible");
 
-                P1GBElement.classList.toggle("invisible");          
+                P1GBElement.classList.toggle("invisible");
                 P2GBElement.classList.toggle("no-events");
                 P2GBElement.classList.toggle("enemy");
 
@@ -211,7 +211,7 @@ export const startHumanGame = () => {
 
     P2GBElement.appendChild(P2Title);
     P2GBElement.appendChild(P2Spaces);
-   
+
     // Build player 1 ship tracker
     const shipTrackerOne = document.createElement("div");
     shipTrackerOne.classList = "ship-tracker";
@@ -221,19 +221,19 @@ export const startHumanGame = () => {
     const shipTrackerTwo = document.createElement("div");
     shipTrackerTwo.classList = "ship-tracker";
     shipTrackerTwo.setAttribute("id", "two");
-    
+
     // Build and add ships to the ship trackers
     shipSizes.forEach((size, index) => {
 
         // Build player 1 ship
         const shipOne = document.createElement("div");
         shipOne.classList = "ship";
-        shipOne.setAttribute("id", "ship-1-"+index); // ship-playerNumber-shipSpaceIndex
+        shipOne.setAttribute("id", "ship-1-" + index); // ship-playerNumber-shipSpaceIndex
 
         // Build player 2 ship
         const shipTwo = document.createElement("div");
         shipTwo.classList = "ship";
-        shipTwo.setAttribute("id", "ship-2-"+index); // ship-playerNumber-shipSpaceIndex
+        shipTwo.setAttribute("id", "ship-2-" + index); // ship-playerNumber-shipSpaceIndex
 
         for (let i = 0; i < size; i++) {
             // Build player 1 ship spaces
@@ -247,7 +247,7 @@ export const startHumanGame = () => {
             shipOne.appendChild(shipSpaceOne);
             shipTwo.appendChild(shipSpaceTwo);
         }
-        
+
         shipTrackerOne.appendChild(shipOne);
         shipTrackerTwo.appendChild(shipTwo);
     });
@@ -262,14 +262,14 @@ export const startHumanGame = () => {
     // Build the overall gameboards container
     const gameboardsContainer = document.createElement("div");
     gameboardsContainer.classList = "gameboards";
-    
+
     // Append each element into their respective container
     gameboardOne.appendChild(shipTrackerOne);
     gameboardOne.appendChild(P1GBElement);
 
-    gameboardTwo.appendChild(P2GBElement);        
+    gameboardTwo.appendChild(P2GBElement);
     gameboardTwo.appendChild(shipTrackerTwo);
-    
+
     gameboardsContainer.appendChild(gameboardOne);
     gameboardsContainer.appendChild(gameboardTwo);
 
